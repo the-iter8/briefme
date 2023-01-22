@@ -1,0 +1,13 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: var(--xs);
+  cursor: pointer;
+  width: fit-content;
+
+  border-radius: 30px;
+  background-color: inherit;
+  outline: 2px solid black;
+}

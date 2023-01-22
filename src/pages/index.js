@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Context } from './_app';
 import styles from '../styles/Landing.module.css';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import { loginWithPopup } from '../utils/Firebase';
 
@@ -9,8 +9,8 @@ export default function Home() {
   const { setCurrentUser, currentUser } = useContext(Context);
 
   async function loginHandle() {
-    const resp = await loginWithPopup();
-    setCurrentUser(resp.user);
+    const { user } = await loginWithPopup();
+    setCurrentUser(user);
   }
 
   return (

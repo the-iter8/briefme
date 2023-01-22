@@ -1,10 +1,12 @@
 import '../styles/classes.css';
 import '../styles/globals.css';
 import '../styles/variables.css';
+import '../styles/Text.css';
 
 import React, { useState, useEffect } from 'react';
 import { checkUser } from '../utils/Firebase';
 import { useRouter } from 'next/router';
+
 
 export const Context = React.createContext();
 function MyApp({ Component, pageProps }) {
@@ -12,26 +14,27 @@ function MyApp({ Component, pageProps }) {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  // does not works! for loggin in?
+  
   useEffect(() => {
-    const unsubscribe = checkUser((user) => {
+    checkUser((user) => {
       // A callback function.
-      setCurrentUser(user);
+      //Push a notification redirecting.
       // Check valid user == ankit?
+      setCurrentUser(user);
       if (user) {
-        router.push('/dashboard');
-        //Push a notification redirecting.
+        if (router.pathname != '/dashboard') router.push('/dashboard');
       } else {
-        router.push('/');
+        if (router.pathname != '/') router.push('/');
       }
       // For the loading thing.
       setTimeout(() => {
         setLoading(false);
       }, 100);
     });
-
-    return unsubscribe;
   }, []);
 
+  console.log(currentUser);
   return (
     <Context.Provider
       value={{

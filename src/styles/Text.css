@@ -1,7 +1,7 @@
-@import "src/styles/variables";
-@import "src/styles/mixins";
+@import './globals.css';
+@import './variables.css';
 
-.primary {
+/* .primary {
   @include body-font(1.6rem, 400);
 }
 
@@ -13,9 +13,7 @@
   color: $white;
 }
 
-.grey {
-  color: $grey5;
-}
+
 
 .grey2 {
   color: $grey2;
@@ -59,6 +57,9 @@
 
 .info {
   color: $info;
+} */
+.grey {
+  color: var(--grey);
 }
 
 .normal {
@@ -78,27 +79,27 @@
 }
 
 .xxxs {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 }
 
 .xxs {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .xs {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .sm {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
 }
 
 .md {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
 }
 
 .lg {
-  font-size: 1.8rem;
+  font-size: 1.7rem;
 }
 
 .xl {
@@ -125,6 +126,6 @@
   text-align: justify;
 }
 
-.noWrap{
+.noWrap {
   white-space: nowrap;
 }

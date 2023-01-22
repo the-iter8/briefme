@@ -1,0 +1,11 @@
+.insModalInner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  gap: 1rem;
+}
+.mySwiper {
+  max-width: 100%;
+}

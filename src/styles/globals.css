@@ -1,4 +1,5 @@
 @import 'variables.css';
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 * {
   box-sizing: border-box;
@@ -6,7 +7,8 @@
   padding: 0;
   border: 0;
   color: black;
-  outline: 2px solid red;
+
+  font-family: 'Poppins', sans-serif;
 }
 
 *:before,
@@ -34,4 +36,22 @@ h5,
 h6 {
   margin: 0;
   font-weight: 800;
+}
+
+:root {
+  --swiper-navigation-size: 30px !important;
+  --swiper-navigation-color: #000 !important;
+}
+
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  display: none;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  background-color: white;
+
+  border-radius: 100%;
+  height: 30px !important;
+  width: 30px !important;
 }
