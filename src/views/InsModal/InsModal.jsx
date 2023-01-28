@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext, useEffect } from 'react';
 import 'swiper/css';
-import { Context } from '../../pages/_app';
+import { UserContext } from '../../utils/Contexts';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -15,20 +15,16 @@ import styles from './InsModal.module.css';
 import Button from '../../components/Button/Button';
 
 export default function InsModal() {
-  const { setCurrentUser, currentUser } = useContext(Context);
+  const { setCurrentUser, currentUser } = useContext(UserContext);
   const [open, setOpen] = useState(true);
 
   const handleOpenInsModal = () => setOpen(false);
   const handleCloseInsModal = () => setOpen(true);
-  getUser(currentUser).then((resp) => {
-    setOpen(Boolean(resp));
-  });
+  if (currentUser)
+    getUser(currentUser).then((resp) => {
+      setOpen(Boolean(resp));
+    });
 
-  useEffect(() => {
-    console.log(open, 'this is open');
-  }, [open]);
-
-  //   User Exsists does not works! Returns before the promise is resolved.
 
   const insModalStyle = {
     borderRadius: 3,

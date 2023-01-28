@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import { Context } from '../../pages/_app';
+import { UserContext } from '../../utils/Contexts';
 
 import styles from './Navbar.module.css';
 import { logOut } from '../../utils/Firebase';
 
 import Avatar from '@mui/material/Avatar';
-import NavbarQuote from '../../modules/NavbarQuote';
+import NavbarQuote from '../../modules/TheBhagwadGita/NavbarQuote';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
 import LogoutIcon from '@mui/icons-material/Logout';
 
@@ -14,8 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
-export default function Navbar() {
-  const { setCurrentUser, currentUser } = useContext(Context);
+export default function Navbar({ data }) {
+  const { setCurrentUser, currentUser } = useContext(UserContext);
   function BaseMenu() {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -34,8 +34,7 @@ export default function Navbar() {
           aria-haspopup='true'
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          // set the image according to the fetched image from firestore.
-          src='/army.jpg'
+          src={currentUser?.photoURL}
           className={styles.avatar}
         />
         <Menu
@@ -64,10 +63,9 @@ export default function Navbar() {
   }
 
   return (
-    <div className={`flex-between ${styles.navbar} `}>
-      {/* we might want to remove this edit functionality.  */}
+    <div className={styles.navbar}>
       <DriveFileRenameOutlineIcon fontSize='large' />
-      <NavbarQuote />
+      <NavbarQuote data={data} />
       <BaseMenu />
     </div>
   );

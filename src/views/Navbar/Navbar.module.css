@@ -1,6 +1,11 @@
 .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem;
-  max-height: 10vh;
+  gap: 1rem;
+
+  /* max-height: 10vh; */
   -webkit-box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 3px 7px -1px rgba(0, 0, 0, 0.75);

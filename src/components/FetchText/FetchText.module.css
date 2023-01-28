@@ -1,0 +1,6 @@
+.root {
+  font-size: 0.7rem;
+  color: var(--grey);
+  justify-self: right;
+  align-self: flex-end;
+}
