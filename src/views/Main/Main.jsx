@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './Main.module.css';
 import Text from '../../components/Text';
-import Button from '../../components/Button/Button';
+
+import AddWidgets from '../AddWidgets/AddWidgets';
 export default function Main() {
+
+
   return (
     <div className={styles.mainDiv}>
       <div className={styles.noPref}>
@@ -13,10 +16,10 @@ export default function Main() {
           <Text align='center' size='xxs' color='grey'>
             Click the “Add Widgets” Button to get started!
           </Text>
-          <Button fontSize='xxxs'>Add Widgets</Button>
+          <AddWidgets />
         </div>
       </div>
-      <div className={styles.pref}></div>
+      
     </div>
   );
 }

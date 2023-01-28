@@ -9,9 +9,6 @@
   @include secondary-font(1.6rem, 400);
 }
 
-.light {
-  color: $white;
-}
 
 
 
@@ -60,6 +57,9 @@
 } */
 .grey {
   color: var(--grey);
+}
+.light {
+  color: rgb(255, 255, 255);
 }
 
 .normal {

@@ -3,18 +3,30 @@ import styles from './Button.module.css';
 import Text from '../Text/Text';
 
 export default function Button(props) {
-  const { children, icon, id, fontSize, size, fontWeight, onClick } = props;
-  const padding = size == 'large' ? '1em 2em' : '0.5em 1.0rem';
+  const {
+    children,
+    icon,
+    fontSize,
+    size,
+    fontWeight,
+    onClick,
+    primary,
+    color,
+  } = props;
+  const padding = size == 'large' ? '1em 2em' : '0.4em 0.9rem';
 
   return (
     <button
-      id={id}
       style={{ padding: padding }}
-      className={styles.btn}
+      className={primary ? styles.primary : styles.btn}
       onClick={onClick}
     >
       {icon}
-      <Text size={fontSize} weight={fontWeight}>
+      <Text
+        size={fontSize ? fontSize : 'xxxs'}
+        weight={fontWeight}
+        color={color}
+      >
         {children}
       </Text>
     </button>

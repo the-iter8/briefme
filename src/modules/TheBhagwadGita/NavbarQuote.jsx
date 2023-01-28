@@ -11,7 +11,7 @@ export default function NavbarQuote({ data }) {
         {data?.translations[0]?.description}
       </Text>
 
-      <FetchText />
+      <FetchText source='The BhagwadGita API' />
     </div>
   );
 }

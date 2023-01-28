@@ -1,13 +1,16 @@
-.btn {
+.btn,
+.primary {
   display: flex;
   align-items: center;
   justify-content: center;
 
-  gap: var(--xs);
   cursor: pointer;
   width: fit-content;
 
-  border-radius: 30px;
+  border-radius: 20px;
   background-color: inherit;
   outline: 2px solid black;
+}
+.primary {
+  outline: 2px solid white;
 }

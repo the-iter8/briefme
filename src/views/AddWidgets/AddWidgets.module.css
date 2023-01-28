@@ -1,0 +1,11 @@
+.navbar,
+.navbarChild {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+.navbarChild {
+  padding: 0;
+}

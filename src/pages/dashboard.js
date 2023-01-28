@@ -33,9 +33,6 @@ export async function getStaticProps() {
     '-' +
     datetime.split('T')[1].split('.')[0];
 
-  console.log(fetchedISROn);
-  //ADD DATE AS WELL HERE IN THE FETCHED isr ON
-
   const ref = day_of_year && bhagwadGitaRefs[day_of_year];
   const { bhagwadGitaData } = await useBhagwadGitaQuote(ref);
 
