@@ -5,7 +5,7 @@ import { ISRTime } from '../../utils/Contexts';
 export default function FetchText(props) {
   const { SWRTime, source } = props;
   const { fetchedISROn } = useContext(ISRTime);
-  console.log(fetchedISROn);
+
   return (
     <span className={styles.root}>
       Fetched on {SWRTime ? SWRTime : fetchedISROn} from {source}

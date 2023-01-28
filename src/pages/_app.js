@@ -20,15 +20,13 @@ function MyApp({ Component, pageProps }) {
       const path = router.pathname;
       setCurrentUser(user);
       if (user) {
-        if (path == '/api') console.log('api');
         if (path != '/dashboard') router.push('/dashboard');
       } else {
         if (path != '/') router.push('/');
       }
       // For the loading thing.
-      setTimeout(() => {
-        setLoading(false);
-      }, 100);
+
+      setLoading(false);
     });
   }, [currentUser]);
 

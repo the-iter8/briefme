@@ -1,6 +1,9 @@
 .root {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 0.5rem;
+
   width: 80%;
   border-radius: 5px;
   padding: 0.5rem 1rem;

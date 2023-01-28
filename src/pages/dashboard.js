@@ -25,7 +25,15 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
 export async function getStaticProps() {
   const { timeData } = await useTime();
   let { day_of_year, datetime } = timeData;
-  const fetchedISROn = datetime.split('T')[1].split('.')[0];
+
+  const fetchedISROn =
+    datetime.split('T')[0].split('-')[2] +
+    '/' +
+    datetime.split('T')[0].split('-')[1] +
+    '-' +
+    datetime.split('T')[1].split('.')[0];
+
+  console.log(fetchedISROn);
   //ADD DATE AS WELL HERE IN THE FETCHED isr ON
 
   const ref = day_of_year && bhagwadGitaRefs[day_of_year];
@@ -36,6 +44,6 @@ export async function getStaticProps() {
       bhagwadGitaData,
       fetchedISROn,
     },
-    revalidate: 30,
+    revalidate: 86400,
   };
 }

@@ -4,7 +4,7 @@ import Text from '../Text/Text';
 
 export default function Button(props) {
   const { children, icon, id, fontSize, size, fontWeight, onClick } = props;
-  const padding = size == 'large' ? '1em 2em' : '0.6em 1.2em';
+  const padding = size == 'large' ? '1em 2em' : '0.5em 1.0rem';
 
   return (
     <button
