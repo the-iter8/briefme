@@ -19,7 +19,8 @@ export const useTime = async () => {
     method: 'GET',
   };
 
-  const link = 'http://worldtimeapi.org/api/timezone/Asia/Kolkata';
+  const link =
+    'https://www.timeapi.io/api/Time/current/zone?timeZone=Asia/Kolkata';
   const raw = await fetch(link, options);
   const timeData = await raw.json();
   return { timeData, isLoading: !timeData };

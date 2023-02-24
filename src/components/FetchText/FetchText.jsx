@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import styles from './FetchText.module.css';
-import Text from '../Text';
 import { ISRTime } from '../../utils/Contexts';
 export default function FetchText(props) {
   const { SWRTime, source } = props;

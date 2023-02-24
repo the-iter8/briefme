@@ -21,8 +21,8 @@ export const loginWithPopup = () => signInWithRedirect(auth, provider);
 export const checkUser = (callback) => onAuthStateChanged(auth, callback);
 export const logOut = () => signOut(auth);
 
-
 export const getUser = async (userObj) => {
+  // Checks if the user exists on the Firestore DB, returns x>0 such
   const { uid } = userObj;
   let count = 0;
   const querySnapshot = await getDocs(collection(store, uid));
@@ -33,6 +33,7 @@ export const getUser = async (userObj) => {
 };
 
 export const postUser = async (userObj) => {
+  // Posts the user details on Firestore DB upon completion of the Instruction modal.
   const { uid, email, displayName, photoURL } = userObj;
   // What if the photo url is updateD?
   // set the preferance object
@@ -49,3 +50,4 @@ export const postUser = async (userObj) => {
     console.error('Error adding document: ', e);
   }
 };
+

@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './Main.module.css';
-import Text from '../../components/Text';
+import Text from '../../components/Text/Text';
 
 import AddWidgets from '../AddWidgets/AddWidgets';
 export default function Main() {
-
-
   return (
     <div className={styles.mainDiv}>
+      <div className={styles.pref}></div>
       <div className={styles.noPref}>
         <div className={styles.noPrefText}>
           <Text align='center' size='xxs' color='grey'>
@@ -19,7 +18,6 @@ export default function Main() {
           <AddWidgets />
         </div>
       </div>
-      
     </div>
   );
 }

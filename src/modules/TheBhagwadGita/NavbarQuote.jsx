@@ -1,5 +1,5 @@
 import React from 'react';
-import Text from '../../components/Text';
+import Text from '../../components/Text/Text';
 import FetchText from '../../components/FetchText/FetchText';
 
 import styles from './NavbarQuote.module.css';

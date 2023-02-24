@@ -7,6 +7,7 @@ import { checkUser } from '../utils/Firebase';
 import { useRouter } from 'next/router';
 import { UserContextProvider } from '../utils/Contexts';
 
+
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState();

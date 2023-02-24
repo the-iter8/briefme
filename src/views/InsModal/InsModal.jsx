@@ -1,14 +1,14 @@
-import React, { useRef, useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import 'swiper/css';
-import { UserContext } from '../../utils/Contexts';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import { UserContext } from '../../utils/Contexts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
 
 import { postUser, getUser } from '../../utils/Firebase';
 
-import Text from '../../components/Text';
+import Text from '../../components/Text/Text';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import styles from './InsModal.module.css';
@@ -24,7 +24,6 @@ export default function InsModal() {
     getUser(currentUser).then((resp) => {
       setOpen(Boolean(resp));
     });
-
 
   const insModalStyle = {
     borderRadius: 3,
