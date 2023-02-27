@@ -10,17 +10,18 @@ import { ISRTimeProvider, DataContextProvider } from '../utils/Contexts';
 
 export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
   // see the fetched on is going to be used at many places and we cant just use it in the context because of the fact that all the things will reload if the context is changed. Now the ISR context changes and the whole application under it rerenders, but it does not matters as the SWR are already on the client side and can send multiple request.s
-  // useEffect(() => {}, []);
 
-  // const [cardData, setCardData] = useState(getAvailData());
+  const [userPref, setUserPref] = useState([]);
+  console.log(userPref);
+  // useEffect(() => {}, []); use this for getting the userpref and set it locally.
 
   return (
     <div>
       <ISRTimeProvider value={{ fetchedISROn }}>
         <Navbar data={bhagwadGitaData} />
-        {/* <DataContextProvider value={{ cardData }}> */}
-        <Main />
-        {/* </DataContextProvider> */}
+        <DataContextProvider value={{ userPref, setUserPref }}>
+          <Main />
+        </DataContextProvider>
       </ISRTimeProvider>
       <InsModal />
     </div>

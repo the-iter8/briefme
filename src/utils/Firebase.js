@@ -50,4 +50,3 @@ export const postUser = async (userObj) => {
     console.error('Error adding document: ', e);
   }
 };
-

@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 const Text = (props) => {
@@ -59,7 +58,7 @@ export type TextProps = React.HTMLAttributes<any> & {
     | 'black'
     | 'info';
   weight?: 'normal' | 'medium' | 'semi-bold' | 'bold' | 'heavy';
-  size?: 'xxxs' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
+  size?: 'xxxs' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'tiny';
   align?: 'left' | 'center' | 'right' | 'justify';
   variant?: keyof JSX.IntrinsicElements;
   noWrap?: boolean;
