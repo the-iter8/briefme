@@ -30,22 +30,6 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
 export async function getStaticProps() {
   const { timeData } = await useTime();
   const { time, day, month } = timeData;
-  // {
-  //   year: 2023,
-  //   month: 2,
-  //   day: 18,
-  //   hour: 18,
-  //   minute: 58,
-  //   seconds: 19,
-  //   milliSeconds: 895,
-  //   dateTime: '2023-02-18T18:58:19.8951211',
-  //   date: '02/18/2023',
-  //   time: '18:58',
-  //   timeZone: 'Asia/Kolkata',
-  //   dayOfWeek: 'Saturday',
-  //   dstActive: false
-  // }
-  // let { day_of_year, datetime } = timeData;
   const fetchedISROn = day + '/' + month + ' at ' + time;
 
   const ref = day && bhagwadGitaRefs[day];

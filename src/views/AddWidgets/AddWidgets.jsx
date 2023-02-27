@@ -29,18 +29,19 @@ export default function AddWidgets() {
   // const { cardData } = useContext(DataContext);
   // console.log(cardData);
 
-  //Setup a way to make this array common for both the Display Widget and Select Widget.
+  //Setup a way to make this array common for both the Display Widget and Select Widget. We will use a particular function that will filter only the components that are available from the pref
+  // Pref will contain all the objects of different
 
   const availableCards = [
     {
       id: 0,
       avail: true,
-      keyName: <MetalPrices />,
+      keyName: <MetalPrices isEdit/>,
     },
     {
       id: 2,
-      avail: true,
-      keyName: <StockPrices />,
+      avail: false,
+      keyName: <StockPrices isEdit />,
     },
   ].filter((item) => {
     return item.avail;
@@ -86,6 +87,7 @@ export default function AddWidgets() {
         TransitionComponent={Transition}
       >
         <Nav />
+        {/* Add a key. */}
         <div className={styles.pref}>
           {availableCards?.map((item) => {
             return item.keyName;

@@ -1,6 +1,61 @@
 import styles from './LargeCard.module.css';
 import React from 'react';
+import Text from '../../../components/Text/Text';
+import FetchText from '../../FetchText/FetchText';
+import { MUIIconStyle } from '../../../utils/LocalData';
+import IconButton from '@mui/material/IconButton';
+import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
+import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 
-export default function LargeCard({ cardName }) {
-  return <div className={styles.root}>{cardName}</div>;
+export default function LargeCard({ title, source, isEdit, SVG, children }) {
+  console.log(isEdit);
+  const Info = () => {
+    //put an onClick Fucntion
+    return <div className={styles.info}>i</div>;
+  };
+
+  const FooterEditIcons = () => {
+    return (
+      <div className={styles.footerIcons}>
+        <IconButton
+          sx={MUIIconStyle}
+          onClick={() => {
+            console.log('click');
+          }}
+        >
+          <AddCircleOutlinedIcon />
+        </IconButton>
+        <IconButton
+          sx={MUIIconStyle}
+          onClick={() => {
+            console.log('click');
+          }}
+        >
+          <RemoveCircleOutlinedIcon />
+        </IconButton>
+      </div>
+    );
+  };
+  return (
+    <div className={styles.root}>
+      <div className={styles.header}>
+        <Text align='center' size='xxxs'>
+          {title}
+        </Text>
+        <Info />
+      </div>
+
+      <div className={styles.mainContent}>{children}</div>
+      {!isEdit && (
+        <div className={styles.SVG}>
+          <SVG />
+        </div>
+      )}
+      <div className={styles.footer}>
+        {isEdit && <FooterEditIcons />}
+
+        <FetchText source={source} small />
+      </div>
+    </div>
+  );
 }

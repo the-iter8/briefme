@@ -13,3 +13,10 @@ export const getAvailData = (pref) => {
 
   return { availabilityArr };
 };
+
+export const MUIIconStyle = {
+  padding: 0.2,
+  boxShadow: '1px 4px 6px -2px rgba(0, 0, 0, 0.75)',
+  opacity: 0.75,
+  borderRadius: "8px",
+};

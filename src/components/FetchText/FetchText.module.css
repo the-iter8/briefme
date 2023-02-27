@@ -1,8 +1,12 @@
-.root {
+.root,
+.rootSmall {
   font-size: 0.7rem;
   color: var(--grey);
-  justify-self: right;
+
   align-self: flex-end;
+  text-align: right;
+  max-width: 50%;
 }
-
-
+.rootSmall {
+  font-size: 0.5rem;
+}

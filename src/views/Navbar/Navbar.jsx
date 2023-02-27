@@ -6,18 +6,15 @@ import { logOut } from '../../utils/Firebase';
 
 import Text from '../../components/Text/Text';
 import NavbarQuote from '../../modules/TheBhagwadGita/NavbarQuote';
-
+import { MUIIconStyle } from '../../utils/LocalData';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function Navbar({ data }) {
-  const { setCurrentUser, currentUser } = useContext(UserContext);
-  const UserProfileBtnStyle = {
-    padding: 0.5,
-    boxShadow: '0px 1px 4px -2px rgba(0, 0, 0, 0.75)',
-  };
+  const { currentUser } = useContext(UserContext);
+
   const UserProfile = () => {
     return (
       <div className={styles.profileSection}>
@@ -33,15 +30,15 @@ export default function Navbar({ data }) {
           <Avatar src={currentUser?.photoURL} className={styles.avatar} />
         </div>
         <div className={styles.profileIcons}>
-          <IconButton sx={UserProfileBtnStyle}>
+          <IconButton sx={MUIIconStyle}>
             <SettingsIcon size='small' />
           </IconButton>
-          <IconButton sx={UserProfileBtnStyle}>
+          <IconButton sx={MUIIconStyle}>
             <SettingsIcon size='small' />
           </IconButton>
 
           <IconButton
-            sx={UserProfileBtnStyle}
+            sx={MUIIconStyle}
             onClick={() => {
               logOut();
             }}
