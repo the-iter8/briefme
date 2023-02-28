@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import dynamic from 'next/dynamic';
 import styles from './AddWidgets.module.css';
-import { DataContext } from '../../utils/Contexts';
-
+import { DataContext, UserContext } from '../../utils/Contexts';
+import { postPref } from '../../utils/Firebase';
 import Text from '../../components/Text/Text';
 import Button from '../../components/Button/Button';
 import Dialog from '@mui/material/Dialog';
@@ -26,9 +26,11 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function AddWidgets() {
+  const { userPref } = useContext(DataContext);
+  const { currentUser } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
-  const { userPref, setUserPref } = useContext(DataContext);
-  console.log(userPref, 'Add widget');
+
+  const [localUserPref, setLocalUserPref] = useState(userPref);
 
   //Setup a way to make this array common for both the Display Widget and Select Widget. We will use a particular function that will filter only the components that are available from the pref
   // Pref will contain all the objects of different
@@ -38,19 +40,40 @@ export default function AddWidgets() {
     {
       id: 0,
       avail: true,
-      keyName: 'MP',
-      comp: <MetalPrices isEdit />,
+      keyID: 'MP',
+      comp: (
+        <MetalPrices
+          isEdit
+          localUserPref={localUserPref}
+          setLocalUserPref={setLocalUserPref}
+        />
+      ),
     },
     {
-      id: 2,
+      id: 1,
       avail: false,
-      comp: <StockPrices isEdit />,
-      keyName: 'SP',
+      keyID: 'SP',
+      comp: (
+        <StockPrices
+          isEdit
+          localUserPref={localUserPref}
+          setLocalUserPref={setLocalUserPref}
+        />
+      ),
     },
   ].filter((item) => {
     return item.avail;
   });
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleSavePref = () => {
+    // Show a popup that the preferance has been updated.
+    console.log(localUserPref);
+    postPref(currentUser, localUserPref);
+  };
   const Nav = () => {
     return (
       <AppBar sx={{ position: 'relative' }}>
@@ -63,15 +86,12 @@ export default function AddWidgets() {
               Edit or add your widget preferance.
             </Text>
           </div>
-          <Button color='light' onClick={handleClose} primary>
+          <Button color='light' primary onClick={handleSavePref}>
             Save
           </Button>
         </div>
       </AppBar>
     );
-  };
-  const handleClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -91,7 +111,7 @@ export default function AddWidgets() {
         TransitionComponent={Transition}
       >
         <Nav />
-        {/* Add a key. */}
+        {/* Add a keyID. */}
         <div className={styles.pref}>
           {availableCards?.map((item, index) => {
             return item.comp;

@@ -8,7 +8,13 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
 } from 'firebase/auth';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
+import {
+  doc,
+  addDoc,
+  getDocs,
+  updateDoc,
+  collection,
+} from 'firebase/firestore';
 
 export const app = initializeApp(firebaseConfig);
 
@@ -21,15 +27,28 @@ export const loginWithPopup = () => signInWithRedirect(auth, provider);
 export const checkUser = (callback) => onAuthStateChanged(auth, callback);
 export const logOut = () => signOut(auth);
 
+// Set it up such a way that all the pref is fetched from the getUser itself somehow.
+
 export const getUser = async (userObj) => {
   // Checks if the user exists on the Firestore DB, returns x>0 such
   const { uid } = userObj;
   let count = 0;
   const querySnapshot = await getDocs(collection(store, uid));
-  querySnapshot.forEach((doc) => {
+  querySnapshot.forEach(() => {
     count += 1;
   });
   return count;
+};
+
+export const getPref = async (userObj) => {
+  const { uid } = userObj;
+  const querySnapshot = await getDocs(collection(store, uid));
+  let data;
+  querySnapshot.forEach((item) => {
+    data = item.data().pref;
+  });
+
+  return data || [];
 };
 
 export const postUser = async (userObj) => {
@@ -43,10 +62,22 @@ export const postUser = async (userObj) => {
       fullName: displayName,
       photo: photoURL,
       emailId: email,
-      pref: {},
+      pref: [],
     });
     console.log('Document written with ID: ', docRef.id);
   } catch (e) {
     console.error('Error adding document: ', e);
   }
+};
+
+export const postPref = async (userObj, newPrefArr) => {
+  const { uid } = userObj;
+  const querySnapshot = await getDocs(collection(store, uid));
+  querySnapshot.forEach(async (item) => {
+    const ref = doc(store, uid, item.id);
+    console.log(newPrefArr);
+    await updateDoc(ref, {
+      pref: [...newPrefArr],
+    });
+  });
 };

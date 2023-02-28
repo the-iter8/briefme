@@ -7,7 +7,7 @@ import styles from './MetalPrices.module.css';
 import Text from '../../components/Text/Text';
 
 export default function MetalPrice(props) {
-  const { isEdit } = props;
+  const { isEdit, localUserPref, setLocalUserPref } = props;
   const SectionOne = ({ SVG, title, priceUSD, priceINR }) => {
     return (
       <div className={styles.sectionOne}>
@@ -32,9 +32,11 @@ export default function MetalPrice(props) {
       source='Gold Price - Live'
       cardName='MetalPrice'
       isEdit={isEdit}
-      keyName='MP'
+      keyID='MP'
       //If it is isEdit then we wont send the data.
       SVG={MetalStack}
+      localUserPref={localUserPref}
+      setLocalUserPref={setLocalUserPref}
     >
       <div className={styles.mainContent}>
         <SectionOne

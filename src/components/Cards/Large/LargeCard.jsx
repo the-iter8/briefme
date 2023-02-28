@@ -1,6 +1,6 @@
 import styles from './LargeCard.module.css';
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { DataContext } from '../../../utils/Contexts';
 import Text from '../../../components/Text/Text';
 import FetchText from '../../FetchText/FetchText';
@@ -10,11 +10,17 @@ import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
 import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
 
 export default function LargeCard(props) {
-  const { title, source, isEdit, SVG, children, keyName } = props;
-  const { userPref, setUserPref } = useContext(DataContext);
-  // console.log(isEdit, keyName);
-
-  //make 3 functions such that 1 will set the pref locally, one will post the pref.
+  const {
+    keyID,
+    SVG,
+    title,
+    source,
+    isEdit,
+    children,
+    localUserPref,
+    setLocalUserPref,
+  } = props;
+  console.log(keyID, 'Key ID in Large card');
 
   const Info = () => {
     //put an onClick Fucntion
@@ -23,19 +29,28 @@ export default function LargeCard(props) {
 
   const handleAddLocalPref = () => {
     let flag = 0;
-    let newArr = [];
-    userPref.forEach((item) => {
-      if (item.key === keyName) flag++;
+    localUserPref.forEach((item) => {
+      if (item.keyID === keyID) flag++;
     });
     if (flag === 0) {
       const newArr = [
-        ...userPref,
+        ...localUserPref,
         {
-          key: keyName,
+          keyID: keyID,
         },
       ];
-      setUserPref(newArr);
+      setLocalUserPref(newArr);
     }
+  };
+
+  const handleRemovePref = () => {
+    let newArr = [];
+    let flag = 0;
+    newArr = localUserPref.filter((item) => {
+      if (item.keyID === keyID) flag = 1;
+      return item.keyID !== keyID;
+    });
+    if (flag) setLocalUserPref(newArr);
   };
 
   const FooterEditIcons = () => {
@@ -52,7 +67,7 @@ export default function LargeCard(props) {
         <IconButton
           sx={MUIIconStyle}
           onClick={() => {
-            console.log('click');
+            handleRemovePref();
           }}
         >
           <RemoveCircleOutlinedIcon />
@@ -60,6 +75,7 @@ export default function LargeCard(props) {
       </div>
     );
   };
+  console.log(localUserPref, 'Inside the large card');
   return (
     <div className={styles.root}>
       <div className={styles.header}>

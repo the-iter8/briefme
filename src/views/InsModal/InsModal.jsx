@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import { UserContext } from '../../utils/Contexts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
-
+import { insModalStyle } from '../../utils/LocalData';
 import { postUser, getUser } from '../../utils/Firebase';
 
 import Text from '../../components/Text/Text';
@@ -15,26 +15,13 @@ import styles from './InsModal.module.css';
 import Button from '../../components/Button/Button';
 
 export default function InsModal() {
-  const { setCurrentUser, currentUser } = useContext(UserContext);
+  const { currentUser } = useContext(UserContext);
   const [open, setOpen] = useState(true);
-
-  const handleOpenInsModal = () => setOpen(false);
   const handleCloseInsModal = () => setOpen(true);
   if (currentUser)
     getUser(currentUser).then((resp) => {
       setOpen(Boolean(resp));
     });
-
-  const insModalStyle = {
-    borderRadius: 3,
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    p: 4,
-  };
 
   function Carousel() {
     return (
@@ -58,6 +45,7 @@ export default function InsModal() {
         <SwiperSlide className={styles.mySwiper}>
           <img src='/army.jpg' alt='' />
         </SwiperSlide>
+        
         <SwiperSlide className={styles.mySwiper}>
           <img src='/army.jpg' alt='' />
         </SwiperSlide>
