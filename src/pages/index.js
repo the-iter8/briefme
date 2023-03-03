@@ -6,7 +6,7 @@ import React, { useContext } from 'react';
 import { loginWithPopup } from '../utils/Firebase';
 
 export default function Home() {
-  const { setCurrentUser, currentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   async function loginHandle() {
     const { user } = await loginWithPopup();

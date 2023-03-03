@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { UserContext } from '../../utils/Contexts';
+import React from 'react';
 
 import styles from './Navbar.module.css';
 import { logOut } from '../../utils/Firebase';
@@ -13,9 +12,8 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 export default function Navbar(props) {
-  const { data, prefModal } = props;
-  const { openEditPref, setOpenEditPref } = prefModal;
-  const { currentUser } = useContext(UserContext);
+  const { data, prefModal, userData } = props;
+  const { setOpenEditPref } = prefModal;
 
   // remove this below
   const MUIIconInlineStyle = {
@@ -33,13 +31,17 @@ export default function Navbar(props) {
         <div className={styles.profile}>
           <div>
             <Text size='xxxs' align='right' weight='semi-bold'>
-              {currentUser?.displayName}
+              {userData?.fullName || 'Waiting for you... '}
             </Text>
             <Text size='tiny' color='grey'>
-              {currentUser?.email}
+              {userData?.emailId || 'yourcuteemail@awwmail.com'}
             </Text>
           </div>
-          <Avatar src={currentUser?.photoURL} className={styles.avatar} />
+          <Avatar
+            src={userData?.photo}
+            className={styles.avatar}
+            alt={userData?.fullName || 'i8'}
+          />
         </div>
         <div className={styles.profileIcons}>
           <IconButton
