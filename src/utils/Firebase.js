@@ -29,18 +29,28 @@ export const logOut = () => signOut(auth);
 
 // Set it up such a way that all the pref is fetched from the getUser itself somehow.
 
-export const getUser = async (userObj) => {
+export const getUserData = async (userObj) => {
   // Checks if the user exists on the Firestore DB, returns x>0 such
+  console.log('Inside the getuser');
   const { uid } = userObj;
-  let count = 0;
+  let exists = 0;
+  let userData = {
+    fullName: 'No user',
+    photo: null,
+    emailId: 'abc@example.com',
+    pref: [],
+  };
   const querySnapshot = await getDocs(collection(store, uid));
-  querySnapshot.forEach(() => {
-    count += 1;
+  querySnapshot.forEach((item) => {
+    userData = item.data();
+    exists += 1;
   });
-  return count;
+
+  return { userData, exists };
 };
 
 export const getPref = async (userObj) => {
+  console.log('Inside the getpref');
   const { uid } = userObj;
   const querySnapshot = await getDocs(collection(store, uid));
   let data;
@@ -73,9 +83,9 @@ export const postUser = async (userObj) => {
 export const postPref = async (userObj, newPrefArr) => {
   const { uid } = userObj;
   const querySnapshot = await getDocs(collection(store, uid));
+  console.log(newPrefArr);
   querySnapshot.forEach(async (item) => {
     const ref = doc(store, uid, item.id);
-    console.log(newPrefArr);
     await updateDoc(ref, {
       pref: [...newPrefArr],
     });

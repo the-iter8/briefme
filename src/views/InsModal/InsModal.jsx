@@ -14,14 +14,11 @@ import Modal from '@mui/material/Modal';
 import styles from './InsModal.module.css';
 import Button from '../../components/Button/Button';
 
-export default function InsModal() {
+export default function InsModal({ toggle }) {
+  const { openInsModal, setOpenInsModal } = toggle;
   const { currentUser } = useContext(UserContext);
-  const [open, setOpen] = useState(true);
-  const handleCloseInsModal = () => setOpen(true);
-  if (currentUser)
-    getUser(currentUser).then((resp) => {
-      setOpen(Boolean(resp));
-    });
+
+  const handleCloseInsModal = () => setOpenInsModal(true);
 
   function Carousel() {
     return (
@@ -45,7 +42,7 @@ export default function InsModal() {
         <SwiperSlide className={styles.mySwiper}>
           <img src='/army.jpg' alt='' />
         </SwiperSlide>
-        
+
         <SwiperSlide className={styles.mySwiper}>
           <img src='/army.jpg' alt='' />
         </SwiperSlide>
@@ -55,8 +52,10 @@ export default function InsModal() {
 
   return (
     <Modal
-      open={!open}
-      onClose={handleCloseInsModal}
+      open={!openInsModal}
+      onClose={() => {
+        handleCloseInsModal();
+      }}
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
     >

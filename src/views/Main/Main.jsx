@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './Main.module.css';
 import dynamic from 'next/dynamic';
 import Text from '../../components/Text/Text';
 import { DataContext } from '../../utils/Contexts';
 import AddWidgets from '../AddWidgets/AddWidgets';
+import Button from '../../components/Button/Button';
+import Slide from '@mui/material/Slide';
 
 //Dynamic Imports
 const MetalPrices = dynamic(
@@ -15,8 +17,10 @@ const StockPrices = dynamic(
   { loading: () => 'Loading...' }
 );
 
-export default function Main() {
+export default function Main({ prefModal }) {
   const { userPref } = useContext(DataContext);
+  const { openEditPref, setOpenEditPref } = prefModal;
+
   const sortedUserArr = userPref?.sort((a, b) => {
     return a.id - b.id;
   });
@@ -45,24 +49,30 @@ export default function Main() {
           <Text align='center' size='xxs' color='grey'>
             Click the “Add Widgets” Button to get started!
           </Text>
-          <AddWidgets />
+          <Button
+            fontSize='xxxs'
+            onClick={() => {
+              setOpenEditPref(true);
+            }}
+          >
+            Add Widgets
+          </Button>
         </div>
       </div>
     );
   };
-  console.log(userPref, 'inside main');
   return (
     <div className={styles.root}>
-      {userPref?.length !== 0 ? (
+      {userPref?.length !== 0 && openEditPref === false ? (
         <div className={styles.pref}>
           {availCardArray?.map((item, index) => {
-            console.log(item);
             return <div key={index}>{item.comp}</div>;
           })}
         </div>
       ) : (
         <NoPref />
       )}
+      <AddWidgets prefModal={prefModal} />
     </div>
   );
 }

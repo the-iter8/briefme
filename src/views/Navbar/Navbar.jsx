@@ -9,12 +9,24 @@ import NavbarQuote from '../../modules/TheBhagwadGita/NavbarQuote';
 import { MUIIconStyle } from '../../utils/LocalData';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
-import LogoutIcon from '@mui/icons-material/Logout';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import SettingsIcon from '@mui/icons-material/Settings';
 
-export default function Navbar({ data }) {
+export default function Navbar(props) {
+  const { data, prefModal } = props;
+  const { openEditPref, setOpenEditPref } = prefModal;
   const { currentUser } = useContext(UserContext);
 
+  // remove this below
+  const MUIIconInlineStyle = {
+    padding: 0.8,
+    opacity: 0.75,
+    paddingTop: 0.4,
+    paddingBottom: 0.4,
+    borderRadius: '8px',
+
+    boxShadow: '0px 4px 6px -2px rgba(0, 0, 0, 0.75)',
+  };
   const UserProfile = () => {
     return (
       <div className={styles.profileSection}>
@@ -30,20 +42,21 @@ export default function Navbar({ data }) {
           <Avatar src={currentUser?.photoURL} className={styles.avatar} />
         </div>
         <div className={styles.profileIcons}>
-          <IconButton sx={MUIIconStyle}>
-            <SettingsIcon size='small' />
-          </IconButton>
-          <IconButton sx={MUIIconStyle}>
-            <SettingsIcon size='small' />
-          </IconButton>
-
           <IconButton
             sx={MUIIconStyle}
             onClick={() => {
               logOut();
             }}
           >
-            <LogoutIcon size='small' />
+            <PowerSettingsNewIcon size='small' />
+          </IconButton>
+          <IconButton
+            sx={MUIIconInlineStyle}
+            onClick={() => {
+              setOpenEditPref(true);
+            }}
+          >
+            <Text size='tiny'>Edit Widgets</Text>
           </IconButton>
         </div>
       </div>

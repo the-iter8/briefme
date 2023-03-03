@@ -20,7 +20,6 @@ export default function LargeCard(props) {
     localUserPref,
     setLocalUserPref,
   } = props;
-  console.log(keyID, 'Key ID in Large card');
 
   const Info = () => {
     //put an onClick Fucntion
@@ -29,10 +28,10 @@ export default function LargeCard(props) {
 
   const handleAddLocalPref = () => {
     let flag = 0;
-    localUserPref.forEach((item) => {
+    localUserPref?.forEach((item) => {
       if (item.keyID === keyID) flag++;
     });
-    if (flag === 0) {
+    if (flag === 0 && localUserPref) {
       const newArr = [
         ...localUserPref,
         {
@@ -46,7 +45,7 @@ export default function LargeCard(props) {
   const handleRemovePref = () => {
     let newArr = [];
     let flag = 0;
-    newArr = localUserPref.filter((item) => {
+    newArr = localUserPref?.filter((item) => {
       if (item.keyID === keyID) flag = 1;
       return item.keyID !== keyID;
     });
@@ -75,7 +74,7 @@ export default function LargeCard(props) {
       </div>
     );
   };
-  console.log(localUserPref, 'Inside the large card');
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>

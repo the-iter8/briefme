@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import styles from './AddWidgets.module.css';
 import { DataContext, UserContext } from '../../utils/Contexts';
@@ -25,21 +26,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
 });
 
-export default function AddWidgets() {
+export default function AddWidgets({ prefModal }) {
   const { userPref } = useContext(DataContext);
   const { currentUser } = useContext(UserContext);
-  const [open, setOpen] = React.useState(false);
-
+  const { openEditPref, setOpenEditPref } = prefModal;
   const [localUserPref, setLocalUserPref] = useState(userPref);
-
-  //Setup a way to make this array common for both the Display Widget and Select Widget. We will use a particular function that will filter only the components that are available from the pref
-  // Pref will contain all the objects of different
-  // Set Avail = False If API not working.
+  const router = useRouter();
 
   const availableCards = [
     {
       id: 0,
-      avail: true,
       keyID: 'MP',
       comp: (
         <MetalPrices
@@ -51,7 +47,6 @@ export default function AddWidgets() {
     },
     {
       id: 1,
-      avail: false,
       keyID: 'SP',
       comp: (
         <StockPrices
@@ -61,17 +56,15 @@ export default function AddWidgets() {
         />
       ),
     },
-  ].filter((item) => {
-    return item.avail;
-  });
+  ];
 
   const handleClose = () => {
-    setOpen(false);
+    setOpenEditPref((open) => !open);
+    router.reload(window.location.pathname);
   };
 
   const handleSavePref = () => {
     // Show a popup that the preferance has been updated.
-    console.log(localUserPref);
     postPref(currentUser, localUserPref);
   };
   const Nav = () => {
@@ -95,29 +88,18 @@ export default function AddWidgets() {
   };
 
   return (
-    <>
-      <Button
-        fontSize='xxxs'
-        onClick={() => {
-          setOpen(true);
-        }}
-      >
-        Add Widgets
-      </Button>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-      >
-        <Nav />
-        {/* Add a keyID. */}
-        <div className={styles.pref}>
-          {availableCards?.map((item, index) => {
-            return item.comp;
-          })}
-        </div>
-      </Dialog>
-    </>
+    <Dialog
+      fullScreen
+      open={openEditPref}
+      onClose={handleClose}
+      TransitionComponent={Transition}
+    >
+      <Nav />
+      <div className={styles.pref}>
+        {availableCards?.map((item, index) => {
+          return item.comp;
+        })}
+      </div>
+    </Dialog>
   );
 }

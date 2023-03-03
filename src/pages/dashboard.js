@@ -1,41 +1,67 @@
+import React, { useEffect, useState, useContext } from 'react';
+
 import Main from '../views/Main/Main';
 import Navbar from '../views/Navbar/Navbar';
 import InsModal from '../views/InsModal/InsModal';
 // import { getAvailData } from '../utils/LocalData';
 import { UserContext } from '../utils/Contexts';
-import React, { useEffect, useState, useContext } from 'react';
-import { getPref } from '../utils/Firebase';
+import { getUserData } from '../utils/Firebase';
 import { bhagwadGitaRefs } from '../utils/data';
 import { useBhagwadGitaQuote, useTime } from '../api/Endpoints';
 import { ISRTimeProvider, DataContextProvider } from '../utils/Contexts';
-
+import styles from '../styles/Dashboard.module.css';
 export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
   const { currentUser } = useContext(UserContext);
-
   // see the fetched on is going to be used at many places and we cant just use it in the context because of the fact that all the things will reload if the context is changed. Now the ISR context changes and the whole application under it rerenders, but it does not matters as the SWR are already on the client side and can send multiple request.s
-
   //the below state will be totally dependant on the firebase's function and very specific to the actual displaying card.
-
   // we are setting the preferance locally first in the "addwidget" through respective cards then onClick of the save button we send it to FireStore. We are just using the user's preferance defined down below as the starting point of our prefrance in addwidgets.
   // addwidgets will have its own array of available cards.
 
+  //Locally bhi set kro bhiia
+
+  const [openInsModal, setOpenInsModal] = useState(true);
+  const [openEditPref, setOpenEditPref] = useState(false);
+  const [loadingPage, setLoadingPage] = useState(true);
+
+  const [fetchedUserData, setFetchedUserData] = useState({});
   const [userPref, setUserPref] = useState([]);
 
+  // Open Edit Pref updates onchange of modal.
   useEffect(() => {
-    getPref(currentUser).then((resp) => {
-      setUserPref(resp);
-    });
-  }, []);
+    if (currentUser) {
+      getUserData(currentUser).then((resp) => {
+        setLoadingPage(false);
+        const { userData, exists } = resp;
+        setOpenInsModal(Boolean(exists));
+        if (exists) {
+          setFetchedUserData(userData);
+          setUserPref(userData.pref);
+        }
+      });
+    }
+  }, [currentUser]);
 
+  const LoadingPage = () => {
+    return <img src='/loading.gif' alt='notworking' />;
+  };
+  if (loadingPage)
+    return (
+      <div className={styles.loading}>
+        <LoadingPage />
+      </div>
+    );
   return (
     <>
       <ISRTimeProvider value={{ fetchedISROn }}>
-        <Navbar data={bhagwadGitaData} />
+        <Navbar
+          data={bhagwadGitaData}
+          prefModal={{ openEditPref, setOpenEditPref }}
+        />
         <DataContextProvider value={{ userPref }}>
-          <Main />
+          <Main prefModal={{ openEditPref, setOpenEditPref }} />
         </DataContextProvider>
       </ISRTimeProvider>
-      <InsModal />
+      <InsModal toggle={{ openInsModal, setOpenInsModal }} />
     </>
   );
 }
