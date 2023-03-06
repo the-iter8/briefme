@@ -26,4 +26,8 @@
   gap: 1rem;
 }
 
-
+.pref {
+  padding: 0.5rem;
+  display: flex;
+  gap: 1rem;
+}

@@ -6,10 +6,19 @@ import InsModal from '../views/InsModal/InsModal';
 import { UserContext } from '../utils/Contexts';
 import { getUserData } from '../utils/Firebase';
 import { bhagwadGitaRefs } from '../utils/data';
-import { useBhagwadGitaQuote, useTime } from '../api/Endpoints';
+import {
+  useTime,
+  useGoldPrices,
+  useGoldPricesTest,
+  useBhagwadGitaQuote,
+} from '../api/Endpoints';
 import { ISRTimeProvider, DataContextProvider } from '../utils/Contexts';
 
-export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
+export default function Dashboard({
+  bhagwadGitaData,
+  fetchedISROn,
+  metalData,
+}) {
   const { currentUser, setLoading } = useContext(UserContext);
   // see the fetched on is going to be used at many places and we cant just use it in the context because of the fact that all the things will reload if the context is changed. Now the ISR context changes and the whole application under it rerenders, but it does not matters as the SWR are already on the client side and can send multiple request.s
   //the below state will be totally dependant on the firebase's function and very specific to the actual displaying card.
@@ -20,7 +29,6 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
 
   const [openInsModal, setOpenInsModal] = useState(true);
   const [openEditPref, setOpenEditPref] = useState(false);
-  // const [loadingPage, setLoadingPage] = useState(true);
 
   const [fetchedUserData, setFetchedUserData] = useState({});
   const [userPref, setUserPref] = useState([]);
@@ -49,7 +57,10 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
           userData={fetchedUserData}
         />
         <DataContextProvider value={{ userPref }}>
-          <Main prefModal={{ openEditPref, setOpenEditPref }} />
+          <Main
+            prefModal={{ openEditPref, setOpenEditPref }}
+            data={{ metalData }}
+          />
         </DataContextProvider>
       </ISRTimeProvider>
       <InsModal toggle={{ openInsModal, setOpenInsModal }} />
@@ -60,15 +71,17 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn }) {
 export async function getStaticProps() {
   const { timeData } = await useTime();
   const { time, day, month } = timeData;
-  const fetchedISROn = day + '/' + month + ' at ' + time;
+  const fetchedISROn = { time, day, month };
 
   const ref = day && bhagwadGitaRefs[day];
   const { bhagwadGitaData } = await useBhagwadGitaQuote(ref);
+  const { metalData } = await useGoldPricesTest();
 
   return {
     props: {
       bhagwadGitaData,
       fetchedISROn,
+      metalData,
     },
     revalidate: 86400,
   };

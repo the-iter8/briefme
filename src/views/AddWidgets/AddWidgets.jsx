@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import styles from './AddWidgets.module.css';
@@ -12,7 +12,8 @@ import AppBar from '@mui/material/AppBar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-//Dynamic Imports
+//Dynamic Imports change the loading shit.
+
 const MetalPrices = dynamic(
   () => import('../../modules/MetalPrices/MetalPrices'),
   { loading: () => 'Loading...' }
@@ -21,6 +22,9 @@ const StockPrices = dynamic(
   () => import('../../modules/StockPrices/StockPrices'),
   { loading: () => 'Loading...' }
 );
+const OnThisDay = dynamic(() => import('../../modules/OnThisDay/OnThisDay'), {
+  loading: () => 'Loading...',
+});
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
@@ -30,8 +34,12 @@ export default function AddWidgets({ prefModal }) {
   const { userPref } = useContext(DataContext);
   const { currentUser } = useContext(UserContext);
   const { openEditPref, setOpenEditPref } = prefModal;
-  const [localUserPref, setLocalUserPref] = useState(userPref);
+  const [localUserPref, setLocalUserPref] = useState({});
   const router = useRouter();
+
+  useEffect(() => {
+    setLocalUserPref(userPref);
+  }, [userPref]);
 
   const availableCards = [
     {
@@ -47,9 +55,9 @@ export default function AddWidgets({ prefModal }) {
     },
     {
       id: 1,
-      keyID: 'SP',
+      keyID: 'OTD',
       comp: (
-        <StockPrices
+        <OnThisDay
           isEdit
           localUserPref={localUserPref}
           setLocalUserPref={setLocalUserPref}
@@ -67,6 +75,7 @@ export default function AddWidgets({ prefModal }) {
     // Show a popup that the preferance has been updated.
     postPref(currentUser, localUserPref);
   };
+
   const Nav = () => {
     return (
       <AppBar sx={{ position: 'relative' }}>

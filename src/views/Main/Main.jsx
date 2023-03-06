@@ -16,28 +16,57 @@ const StockPrices = dynamic(
   () => import('../../modules/StockPrices/StockPrices'),
   { loading: () => 'Loading...' }
 );
+const OnThisDay = dynamic(() => import('../../modules/OnThisDay/OnThisDay'), {
+  loading: () => 'Loading...',
+});
 
-export default function Main({ prefModal }) {
+export default function Main({ prefModal, data }) {
   const { userPref } = useContext(DataContext);
   const { openEditPref, setOpenEditPref } = prefModal;
+  const { metalData } = data;
 
   const sortedUserArr = userPref?.sort((a, b) => {
     return a.id - b.id;
   });
+
   const availCardArray = [
     {
       id: 0,
       keyID: 'MP',
-      comp: <MetalPrices />,
+      comp: <MetalPrices data={metalData} />,
     },
     {
       id: 1,
-      comp: <StockPrices />,
-      keyID: 'SP',
+      keyID: 'OTD',
+      comp: <OnThisDay />,
     },
-  ].filter((item, index) => {
-    return sortedUserArr[index]?.keyID === item?.keyID;
+  ];
+
+  let dispArr = [];
+  availCardArray.forEach((item) => {
+    sortedUserArr.forEach((sortItem) => {
+      if (sortItem.keyID === item.keyID) {
+        dispArr.push(item);
+      }
+    });
   });
+  
+  // const availCardArrayN = [
+  //   {
+  //     id: 0,
+  //     keyID: 'MP',
+  //     comp: <MetalPrices data={metalData} />,
+  //   },
+  //   {
+  //     id: 1,
+  //     keyID: 'OTD',
+  //     comp: <OnThisDay />,
+  //   },
+  // ].filter((item, index) => {
+  //   console.log(sortedUserArr[index]?.keyID, item?.keyID);
+
+  //   return sortedUserArr[index]?.keyID === item?.keyID;
+  // });
 
   const NoPref = () => {
     return (
@@ -65,7 +94,7 @@ export default function Main({ prefModal }) {
     <div className={styles.root}>
       {userPref?.length !== 0 && openEditPref === false ? (
         <div className={styles.pref}>
-          {availCardArray?.map((item, index) => {
+          {dispArr?.map((item, index) => {
             return <div key={index}>{item.comp}</div>;
           })}
         </div>

@@ -7,13 +7,13 @@ import styles from './MetalPrices.module.css';
 import Text from '../../components/Text/Text';
 
 export default function MetalPrice(props) {
-  const { isEdit, localUserPref, setLocalUserPref } = props;
+  const { isEdit, localUserPref, setLocalUserPref, data } = props;
   const SectionOne = ({ SVG, title, priceUSD, priceINR }) => {
     return (
       <div className={styles.sectionOne}>
         <div className={styles.SVGDiv}>{SVG}</div>
         <div className={styles.priceDiv}>
-          <Text size='tiny' align='left'>
+          <Text size='tiny' align='right'>
             {title}
           </Text>
           <Text size='xxxs' weight='bold' align='right'>
@@ -33,25 +33,22 @@ export default function MetalPrice(props) {
       cardName='MetalPrice'
       isEdit={isEdit}
       keyID='MP'
-      //If it is isEdit then we wont send the data.
       SVG={MetalStack}
       localUserPref={localUserPref}
       setLocalUserPref={setLocalUserPref}
     >
-      <div className={styles.mainContent}>
-        <SectionOne
-          SVG={<Gold />}
-          title='Current Gold Price'
-          priceUSD='29933 USD/Oz'
-          priceINR='30000 INR/Oz'
-        />
-        <SectionOne
-          SVG={<Silver />}
-          title='Current Silver Price'
-          priceUSD='14234 USD/Oz'
-          priceINR='20000 INR/Oz'
-        />
-      </div>
+      <SectionOne
+        SVG={<Gold />}
+        title='Current Gold Price'
+        priceUSD={isEdit ? '29933 USD/Oz' : `${data?.gold} USD/Oz`}
+        priceINR=''
+      />
+      <SectionOne
+        SVG={<Silver />}
+        title='Current Silver Price'
+        priceUSD={isEdit ? '14234 USD/Oz' : `${data?.silver} USD/Oz`}
+        priceINR=''
+      />
     </LargeCard>
   );
 }

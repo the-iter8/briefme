@@ -4,14 +4,16 @@ import { ISRTime } from '../../utils/Contexts';
 export default function FetchText(props) {
   const { SWRTime, source, small } = props;
   const { fetchedISROn } = useContext(ISRTime);
+  const fetchedTimeFormatted =
+    fetchedISROn?.day + '/' + fetchedISROn?.month + ' at ' + fetchedISROn?.time;
 
   return small ? (
     <span className={styles.rootSmall}>
-      Fetched on {SWRTime ? SWRTime : fetchedISROn} from {source}
+      Fetched on {SWRTime ? SWRTime : fetchedTimeFormatted} from {source}
     </span>
   ) : (
     <span className={styles.root}>
-      Fetched on {SWRTime ? SWRTime : fetchedISROn} from {source}
+      Fetched on {SWRTime ? SWRTime : fetchedTimeFormatted} from {source}
     </span>
   );
 }

@@ -74,7 +74,7 @@ export default function LargeCard(props) {
       </div>
     );
   };
-
+  console.log('Large card is rendered with - ', title);
   return (
     <div className={styles.root}>
       <div className={styles.header}>

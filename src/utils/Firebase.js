@@ -31,7 +31,6 @@ export const logOut = () => signOut(auth);
 
 export const getUserData = async (userObj) => {
   // Checks if the user exists on the Firestore DB, returns x>0 such
-  console.log('Inside the getuser');
   const { uid } = userObj;
   let exists = 0;
   let userData = {
@@ -50,7 +49,6 @@ export const getUserData = async (userObj) => {
 };
 
 export const getPref = async (userObj) => {
-  console.log('Inside the getpref');
   const { uid } = userObj;
   const querySnapshot = await getDocs(collection(store, uid));
   let data;
@@ -83,7 +81,6 @@ export const postUser = async (userObj) => {
 export const postPref = async (userObj, newPrefArr) => {
   const { uid } = userObj;
   const querySnapshot = await getDocs(collection(store, uid));
-  console.log(newPrefArr);
   querySnapshot.forEach(async (item) => {
     const ref = doc(store, uid, item.id);
     await updateDoc(ref, {
