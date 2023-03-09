@@ -84,11 +84,11 @@ export default function AddWidgets({ prefModal }) {
             <IconButton edge='start' onClick={handleClose} aria-label='close'>
               <CloseIcon />
             </IconButton>
-            <Text size='xxs' color='light'>
+            <Text size='sm' color='light'>
               Edit or add your widget preferance.
             </Text>
           </div>
-          <Button color='light' primary onClick={handleSavePref}>
+          <Button fontSize='xs' color='light' primary onClick={handleSavePref}>
             Save
           </Button>
         </div>

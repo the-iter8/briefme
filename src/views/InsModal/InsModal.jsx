@@ -63,16 +63,16 @@ export default function InsModal({ toggle }) {
         <div className={styles.insModalInner}>
           <Carousel></Carousel>
 
-          <Text size='xxs' weight='bold' align='center'>
+          <Text size='md' weight='bold' align='center'>
             Welcome to your Dashboard!
           </Text>
-          <Text size='xxxs' align='center'>
+          <Text size='xs' align='center'>
             We're glad to have you onboard. Here are some quick tips to get you
             up and running.
           </Text>
 
           <Button
-            fontSize='xxxs'
+            fontSize='xs'
             fontWeight='semi-bold'
             onClick={() => {
               postUser(currentUser);

@@ -23,7 +23,7 @@ export default function Button(props) {
     >
       {icon}
       <Text
-        size={fontSize ? fontSize : 'xxxs'}
+        size={fontSize ? fontSize : 'md'}
         weight={fontWeight}
         color={color}
       >

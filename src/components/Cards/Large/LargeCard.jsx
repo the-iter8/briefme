@@ -74,18 +74,18 @@ export default function LargeCard(props) {
       </div>
     );
   };
-  console.log('Large card is rendered with - ', title);
+
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Text align='center' size='xxxs'>
+        <Text align='center' size='xs'>
           {title}
         </Text>
         <Info />
       </div>
 
       <div className={styles.mainContent}>{children}</div>
-      {!isEdit && (
+      {!isEdit && SVG && (
         <div className={styles.SVG}>
           <SVG />
         </div>

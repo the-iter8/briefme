@@ -9,6 +9,7 @@ const Text = (props) => {
     color,
     weight,
     size,
+    sizeCustom,
     align,
     ...rest
   } = props;
@@ -23,11 +24,16 @@ const Text = (props) => {
   ];
 
   if (variant == 'p' || variant == undefined) {
-    return <p className={classes.join(' ')}>{children}</p>;
+    return (
+      <p style={{ fontSize: sizeCustom }} className={classes.join(' ')}>
+        {children}
+      </p>
+    );
   }
   if (variant == 'a') {
     return (
       <a
+        style={{ fontSize: sizeCustom }}
         className={classes.join(' ')}
         href={props.href}
         rel='noreferrer'

@@ -23,7 +23,7 @@ const OnThisDay = dynamic(() => import('../../modules/OnThisDay/OnThisDay'), {
 export default function Main({ prefModal, data }) {
   const { userPref } = useContext(DataContext);
   const { openEditPref, setOpenEditPref } = prefModal;
-  const { metalData } = data;
+  const { metalData, wikiData } = data;
 
   const sortedUserArr = userPref?.sort((a, b) => {
     return a.id - b.id;
@@ -38,7 +38,7 @@ export default function Main({ prefModal, data }) {
     {
       id: 1,
       keyID: 'OTD',
-      comp: <OnThisDay />,
+      comp: <OnThisDay data={wikiData} />,
     },
   ];
 
@@ -50,36 +50,20 @@ export default function Main({ prefModal, data }) {
       }
     });
   });
-  
-  // const availCardArrayN = [
-  //   {
-  //     id: 0,
-  //     keyID: 'MP',
-  //     comp: <MetalPrices data={metalData} />,
-  //   },
-  //   {
-  //     id: 1,
-  //     keyID: 'OTD',
-  //     comp: <OnThisDay />,
-  //   },
-  // ].filter((item, index) => {
-  //   console.log(sortedUserArr[index]?.keyID, item?.keyID);
 
-  //   return sortedUserArr[index]?.keyID === item?.keyID;
-  // });
 
   const NoPref = () => {
     return (
       <div className={styles.noPref}>
         <div className={styles.noPrefText}>
-          <Text align='center' size='xxs' color='grey'>
+          <Text align='center' size='sm' color='grey'>
             Currently, you don’t seem to have any active widgets,
           </Text>
-          <Text align='center' size='xxs' color='grey'>
+          <Text align='center' size='sm' color='grey'>
             Click the “Add Widgets” Button to get started!
           </Text>
           <Button
-            fontSize='xxxs'
+            fontSize='sm'
             onClick={() => {
               setOpenEditPref(true);
             }}

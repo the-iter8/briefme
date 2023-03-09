@@ -43,7 +43,18 @@ export const useTime = async () => {
   return { timeData, isLoading: !timeData };
 };
 
-//For testing pourposes
+export const useWikiData = async (ref) => {
+  const { month, day } = ref;
+  const options = {
+    method: 'GET',
+  };
+
+  const link = `https://en.wikipedia.org/api/rest_v1/feed/onthisday/selected/${month}/${day}`;
+  const raw = await fetch(link, options);
+  const wikiData = await raw.json();
+  return { wikiData, isLoading: !wikiData };
+};
+//For testing 
 
 export const useGoldPricesTest = async () => {
   const metalData = await {

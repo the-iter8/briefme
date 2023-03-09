@@ -13,13 +13,13 @@ export default function MetalPrice(props) {
       <div className={styles.sectionOne}>
         <div className={styles.SVGDiv}>{SVG}</div>
         <div className={styles.priceDiv}>
-          <Text size='tiny' align='right'>
+          <Text size='xs' align='right'>
             {title}
           </Text>
-          <Text size='xxxs' weight='bold' align='right'>
+          <Text size='xs' weight='bold' align='right'>
             {priceUSD}
           </Text>
-          <Text size='xxxs' weight='bold' align='right'>
+          <Text size='xs' weight='bold' align='right'>
             {priceINR}
           </Text>
         </div>

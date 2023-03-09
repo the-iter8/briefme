@@ -30,10 +30,10 @@ export default function Navbar(props) {
       <div className={styles.profileSection}>
         <div className={styles.profile}>
           <div>
-            <Text size='xxxs' align='right' weight='semi-bold'>
+            <Text size='xs' align='right' weight='semi-bold'>
               {userData?.fullName || 'Waiting for you... '}
             </Text>
-            <Text size='tiny' color='grey'>
+            <Text size='xxs' color='grey'>
               {userData?.emailId || 'yourcuteemail@awwmail.com'}
             </Text>
           </div>
@@ -58,7 +58,7 @@ export default function Navbar(props) {
               setOpenEditPref(true);
             }}
           >
-            <Text size='tiny'>Edit Widgets</Text>
+            <Text size='xxs'>Edit Widgets</Text>
           </IconButton>
         </div>
       </div>

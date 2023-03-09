@@ -78,38 +78,39 @@
   font-weight: 700;
 }
 .tiny {
-  font-size: 0.7rem;
+  font-size: 0.3rem;
 }
+
 .xxxs {
-  font-size: 0.9rem;
+  font-size: 0.5rem;
 }
 
 .xxs {
-  font-size: 1.1rem;
+  font-size: 0.7rem;
 }
 
 .xs {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
 }
 
 .sm {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 
 .md {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .lg {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 
 .xl {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .xxl {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
 }
 
 .left {

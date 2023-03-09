@@ -1,0 +1,106 @@
+Brief Me - Next JS
+
+
+https://nextjs.org/docs/advanced-features/dynamic-import
+https://www.youtube.com/watch?v=vMNjg7TporI&ab_channel=ILive4Coding
+
+Next JS setup 
+https://codepen.io/ykadosh/pen/XWqKyqg
+
+
+
+1. Collected all the apis and decide what model should be used
+2. cLiked Login 
+3. Setup a db and structure of db
+
+2 Pages.
+
+- Landing - Static Generated
+- Dashboard 
+
+Requirements - 
+
+Firebase,
+SWR
+Firestore,
+NextJS
+React-Grid-Layout.
+
+For realtime updates, we use the SWR
+- Constantly checks (After a period of time on the application, say 10 minutes) or on focus change.
+-  Incremental Static Regeneration for low api per day calls. Fixing an amount of time for them. getStaticProps.
+- Once the ICR period has been passed, prompt the user to refresh the page. 
+
+
+
+Module System, Only add the widgets that you would like to see. (Check if user signup for first time then show the module page. )
+
+
+1. Landing Page -> Login/Signup -> DashBoard
+
+
+- Checks if first time user.
+
+If yes, Show a modal for How to instructions with Ok Got It Btn
+
+Then, Show the main page, which will have all the components, looped thru, getDoc's pref. If [], then show the Div that has the "Add a widget." screen. The add btn will always call a single function, which pops up the modal for the component selection.
+
+
+Show a blank page with - (#Click here to add a new item#) Dashboard is empty and it shows -> 
+that will pop open a modal, that would contain the templates of all the widgets that we can add. Select the widget that you would like to display by On hover Show Add/Remove Option on the corner of each component. 
+
+
+3. Shows a modal to add the preferances/data that is requied for that widget. Click OK.
+
+4. After that the widget is added and stays there on the fixed location. 
+
+-> Shows a sign out button
+-> Edit widgets button, will enable a cross on top of all the widgets. Clicking the cross will remove the widget.  OR will open the modal where we can remove the widget and add it again.  
+
+-> Add a new widget will show the modal, with the widgets that are already present. User can hover each component in the modal to remove or add it. If widget is already there we can remove the add button.
+
+5. For each widget we will, have onclick function to know more about the content (It will redirect to the source.)
+
+6. Error handling will be there as creds could be wrong or something else, like access issues etc. Display an error message on the particular component. 
+
+
+
+- Login 
+  Account Stores the information about user, say username, 
+  passwords, Prefrances, etc. 
+
+
+- Stocks Prices
+- Gold Prices
+- Birthday Today, 
+- Which day Is today
+- Calender to track a task
+- Traffic to Route to work
+- Daily quotes
+- To Do Lists
+- Weather
+- News 
+- Emails 
+
+
+- Notifications 
+  - Insta
+  - Facebook
+  - Whatsapp
+  - Telegram
+  - Twitter
+  - Reddit
+  - LinkedIn
+  - Github
+
+
+
+
+
+
+
+
+Steps - 
+
+2. Talk to Kritika for the design & Work on a functional page.
+5. Prepare docs and MISC. 

@@ -8,6 +8,7 @@ import { getUserData } from '../utils/Firebase';
 import { bhagwadGitaRefs } from '../utils/data';
 import {
   useTime,
+  useWikiData,
   useGoldPrices,
   useGoldPricesTest,
   useBhagwadGitaQuote,
@@ -18,6 +19,7 @@ export default function Dashboard({
   bhagwadGitaData,
   fetchedISROn,
   metalData,
+  wikiData,
 }) {
   const { currentUser, setLoading } = useContext(UserContext);
   // see the fetched on is going to be used at many places and we cant just use it in the context because of the fact that all the things will reload if the context is changed. Now the ISR context changes and the whole application under it rerenders, but it does not matters as the SWR are already on the client side and can send multiple request.s
@@ -59,7 +61,7 @@ export default function Dashboard({
         <DataContextProvider value={{ userPref }}>
           <Main
             prefModal={{ openEditPref, setOpenEditPref }}
-            data={{ metalData }}
+            data={{ metalData, wikiData }}
           />
         </DataContextProvider>
       </ISRTimeProvider>
@@ -75,13 +77,17 @@ export async function getStaticProps() {
 
   const ref = day && bhagwadGitaRefs[day];
   const { bhagwadGitaData } = await useBhagwadGitaQuote(ref);
+  //For testing the gold prices.
+
   const { metalData } = await useGoldPricesTest();
+  const { wikiData } = await useWikiData({ month, day });
 
   return {
     props: {
       bhagwadGitaData,
       fetchedISROn,
       metalData,
+      wikiData,
     },
     revalidate: 86400,
   };
