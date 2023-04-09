@@ -1,9 +1,9 @@
-import Head from 'next/head';
-import { UserContext } from '../utils/Contexts';
-import styles from '../styles/Landing.module.css';
-import React, { useContext } from 'react';
+import Head from "next/head";
+import { UserContext } from "../utils/Contexts";
+import styles from "../styles/Landing.module.css";
+import React, { useContext } from "react";
 
-import { loginWithPopup } from '../utils/Firebase';
+import { loginWithPopup } from "../utils/Firebase";
 
 export default function Home() {
   const { setCurrentUser } = useContext(UserContext);
@@ -28,8 +28,7 @@ export default function Home() {
             loginHandle();
           }}
         >
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt,
-          eos! Login.
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nesciunt, eos! Login.
         </button>
       </div>
     </div>

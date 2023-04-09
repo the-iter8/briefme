@@ -1,14 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default function Silver() {
   return (
-    <svg
-      width='114'
-      height='60'
-      viewBox='0 0 114 113'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
+    <svg width='114' height='60' viewBox='0 0 114 113' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
         fillRule='evenodd'
         clipRule='evenodd'

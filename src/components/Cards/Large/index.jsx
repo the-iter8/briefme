@@ -1,25 +1,16 @@
-import styles from './LargeCard.module.css';
+import styles from "./LargeCard.module.css";
 
-import React, { useContext, useState } from 'react';
-import { DataContext } from '../../../utils/Contexts';
-import Text from '../../../components/Text/Text';
-import FetchText from '../../FetchText/FetchText';
-import { MUIIconStyle } from '../../../utils/LocalData';
-import IconButton from '@mui/material/IconButton';
-import AddCircleOutlinedIcon from '@mui/icons-material/AddCircleOutlined';
-import RemoveCircleOutlinedIcon from '@mui/icons-material/RemoveCircleOutlined';
+import React, { useContext, useState } from "react";
+import { DataContext } from "../../../utils/Contexts";
+import Text from "../../Text";
+import FetchText from "../../FetchText";
+import { MUIIconStyle } from "../../../utils/LocalData";
+import IconButton from "@mui/material/IconButton";
+import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
+import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 
 export default function LargeCard(props) {
-  const {
-    keyID,
-    SVG,
-    title,
-    source,
-    isEdit,
-    children,
-    localUserPref,
-    setLocalUserPref,
-  } = props;
+  const { keyID, SVG, title, source, isEdit, children, localUserPref, setLocalUserPref } = props;
 
   const Info = () => {
     //put an onClick Fucntion

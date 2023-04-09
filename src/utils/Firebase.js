@@ -1,20 +1,8 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-import { firebaseConfig } from '../config/firebase-config';
-import {
-  getAuth,
-  signOut,
-  signInWithRedirect,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-} from 'firebase/auth';
-import {
-  doc,
-  addDoc,
-  getDocs,
-  updateDoc,
-  collection,
-} from 'firebase/firestore';
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { firebaseConfig } from "../config/firebase-config";
+import { getAuth, signOut, signInWithRedirect, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { doc, addDoc, getDocs, updateDoc, collection } from "firebase/firestore";
 
 export const app = initializeApp(firebaseConfig);
 
@@ -34,9 +22,9 @@ export const getUserData = async (userObj) => {
   const { uid } = userObj;
   let exists = 0;
   let userData = {
-    fullName: 'No user',
+    fullName: "No user",
     photo: null,
-    emailId: 'abc@example.com',
+    emailId: "abc@example.com",
     pref: [],
   };
   const querySnapshot = await getDocs(collection(store, uid));
@@ -72,9 +60,9 @@ export const postUser = async (userObj) => {
       emailId: email,
       pref: [],
     });
-    console.log('Document written with ID: ', docRef.id);
+    console.log("Document written with ID: ", docRef.id);
   } catch (e) {
-    console.error('Error adding document: ', e);
+    console.error("Error adding document: ", e);
   }
 };
 

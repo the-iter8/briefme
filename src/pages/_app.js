@@ -1,12 +1,12 @@
-import '../styles/globals.css';
-import '../styles/variables.css';
-import '../styles/Text.css';
+import "../styles/globals.css";
+import "../styles/variables.css";
+import "../styles/Text.css";
 
-import { useRouter } from 'next/router';
-import { checkUser } from '../utils/Firebase';
-import LoadingPage from '../views/Loading/Loading';
-import React, { useState, useEffect } from 'react';
-import { UserContextProvider } from '../utils/Contexts';
+import { useRouter } from "next/router";
+import { checkUser } from "../utils/Firebase";
+import LoadingPage from "../views/Loading/Loading";
+import React, { useState, useEffect } from "react";
+import { UserContextProvider } from "../utils/Contexts";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -22,9 +22,9 @@ function MyApp({ Component, pageProps }) {
       const path = router.pathname;
       setCurrentUser(user);
       if (user) {
-        if (path != '/dashboard') router.push('/dashboard');
+        if (path != "/dashboard") router.push("/dashboard");
       } else {
-        if (path != '/') router.push('/');
+        if (path != "/") router.push("/");
       }
       // For the loading thing.
 

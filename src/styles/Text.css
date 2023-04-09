@@ -1,5 +1,5 @@
-@import './globals.css';
-@import './variables.css';
+@import "./globals.css";
+@import "./variables.css";
 
 /* .primary {
   @include body-font(1.6rem, 400);
@@ -8,9 +8,6 @@
 .secondary {
   @include secondary-font(1.6rem, 400);
 }
-
-
-
 
 .grey2 {
   color: $grey2;
@@ -82,7 +79,7 @@
 }
 
 .xxxs {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
 }
 
 .xxs {

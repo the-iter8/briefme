@@ -1,29 +1,23 @@
-import React, { useContext, useState } from 'react';
-import styles from './Main.module.css';
-import dynamic from 'next/dynamic';
-import Text from '../../components/Text/Text';
-import { DataContext } from '../../utils/Contexts';
-import AddWidgets from '../AddWidgets/AddWidgets';
-import Button from '../../components/Button/Button';
-import Slide from '@mui/material/Slide';
+import React, { useContext, useState } from "react";
+import styles from "./Main.module.css";
+import dynamic from "next/dynamic";
+import Text from "../../components/Text";
+import { DataContext } from "../../utils/Contexts";
+import AddWidgets from "../AddWidgets/AddWidgets";
+import Button from "../../components/Button/";
+import Slide from "@mui/material/Slide";
 
 //Dynamic Imports
-const MetalPrices = dynamic(
-  () => import('../../modules/MetalPrices/MetalPrices'),
-  { loading: () => 'Loading...' }
-);
-const StockPrices = dynamic(
-  () => import('../../modules/StockPrices/StockPrices'),
-  { loading: () => 'Loading...' }
-);
-const OnThisDay = dynamic(() => import('../../modules/OnThisDay/OnThisDay'), {
-  loading: () => 'Loading...',
+const MetalPrices = dynamic(() => import("../../modules/MetalPrices"), { loading: () => "Loading..." });
+const StockPrices = dynamic(() => import("../../modules/StockPrices"), { loading: () => "Loading..." });
+const OnThisDay = dynamic(() => import("../../modules/OnThisDay"), {
+  loading: () => "Loading...",
 });
 
 export default function Main({ prefModal, data }) {
   const { userPref } = useContext(DataContext);
   const { openEditPref, setOpenEditPref } = prefModal;
-  const { metalData, wikiData } = data;
+  const { metalData, wikiData, stockData } = data;
 
   const sortedUserArr = userPref?.sort((a, b) => {
     return a.id - b.id;
@@ -32,13 +26,18 @@ export default function Main({ prefModal, data }) {
   const availCardArray = [
     {
       id: 0,
-      keyID: 'MP',
+      keyID: "MP",
       comp: <MetalPrices data={metalData} />,
     },
     {
       id: 1,
-      keyID: 'OTD',
+      keyID: "OTD",
       comp: <OnThisDay data={wikiData} />,
+    },
+    {
+      id: 2,
+      keyID: "SP",
+      comp: <StockPrices data={stockData} />,
     },
   ];
 
@@ -50,7 +49,6 @@ export default function Main({ prefModal, data }) {
       }
     });
   });
-
 
   const NoPref = () => {
     return (

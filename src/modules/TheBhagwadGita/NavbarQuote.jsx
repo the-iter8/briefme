@@ -1,8 +1,8 @@
-import React from 'react';
-import Text from '../../components/Text/Text';
-import FetchText from '../../components/FetchText/FetchText';
+import React from "react";
+import Text from "../../components/Text";
+import FetchText from "../../components/FetchText";
 
-import styles from './NavbarQuote.module.css';
+import styles from "./NavbarQuote.module.css";
 
 export default function NavbarQuote({ data }) {
   return (
