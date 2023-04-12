@@ -3,12 +3,24 @@
   display: flex;
   flex-direction: column;
 
-  height: 280px;
-  width: 240px;
+  height: 140px;
+  width: 120px;
   z-index: 0;
 
   box-shadow: var(--shadow-large-card);
   border-radius: var(--b-radius-large-primary);
+}
+.header {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-height: 10%;
+
+  padding: 0.8rem 1rem;
+  border-top-right-radius: inherit;
+  border-top-left-radius: inherit;
 }
 .grabber {
   position: absolute;
@@ -19,19 +31,7 @@
 .info:active {
   cursor: grabbing;
 }
-.header {
-  position: relative;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border-bottom: 2px solid black;
-  max-height: 15%;
-
-  padding: 0.8rem 1rem;
-  border-top-right-radius: inherit;
-  border-top-left-radius: inherit;
-}
 .footer {
   padding: 0.3rem;
   max-height: 20%;

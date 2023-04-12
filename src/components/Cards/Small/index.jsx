@@ -1,7 +1,7 @@
-import styles from "./LargeCard.module.css";
+import styles from "./SmallCard.module.css";
 
-import React, { useContext, useState } from "react";
-import { DataContext } from "../../../utils/Contexts";
+import React from "react";
+
 import Text from "../../Text";
 import FetchText from "../../FetchText";
 import { MUIIconStyle } from "../../../utils/LocalData";
@@ -10,7 +10,7 @@ import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 import ControlCameraIcon from "@mui/icons-material/ControlCamera";
 export default function LargeCard(props) {
-  const { keyID, SVG, title, source, isEdit, children, localUserPref, setLocalUserPref } = props;
+  const { keyID, title, source, isEdit, children, localUserPref, setLocalUserPref } = props;
 
   const Grabber = () => {
     //put an onClick Fucntion
@@ -73,21 +73,13 @@ export default function LargeCard(props) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Text align='center' size='xs'>
-          {title}
-        </Text>
         <Grabber />
       </div>
 
       <div className={styles.mainContent}>{children}</div>
-      {!isEdit && SVG && (
-        <div className={styles.SVG}>
-          <SVG />
-        </div>
-      )}
+
       <div className={styles.footer}>
         {isEdit && <FooterEditIcons />}
-
         <FetchText source={source} small />
       </div>
     </div>

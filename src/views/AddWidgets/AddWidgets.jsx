@@ -19,6 +19,9 @@ const StockPrices = dynamic(() => import("../../modules/StockPrices"), { loading
 const OnThisDay = dynamic(() => import("../../modules/OnThisDay"), {
   loading: () => "Loading...",
 });
+const Weather = dynamic(() => import("../../modules/Weather"), {
+  loading: () => "Loading...",
+});
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
@@ -50,6 +53,11 @@ export default function AddWidgets({ prefModal }) {
       id: 2,
       keyID: "SP",
       comp: <StockPrices isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
+    },
+    {
+      id: 3,
+      keyID: "WT",
+      comp: <Weather isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
     },
   ];
 
