@@ -62,6 +62,7 @@ export default function Main({ prefModal, data }) {
       key: "d",
       keyID: "WT",
       comp: <Weather />,
+      
     },
   ];
 
