@@ -25,11 +25,13 @@ export default function Main({ prefModal, data }) {
   const { metalData, wikiData, stockData } = data;
   const layouts = {
     lg: [
-      { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: true, isBounded: true },
+      { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
       { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
       { i: "c", x: 4, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
-      { i: "d", x: 6, y: 0, w: 1, h: 1, isResizable: true, isBounded: true },
-      { i: "e", x: 8, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
+      { i: "d", x: 6, y: 0, w: 1.2, h: 1, isResizable: false, isBounded: true },
+      { i: "e", x: 7.2, y: 0, w: 1.2, h: 1, isResizable: false, isBounded: true },
+      { i: "f", x: 8.2, y: 0, w: 1.2, h: 1, isResizable: false, isBounded: true },
+      { i: "g", x: 9.2, y: 1, w: 1.2, h: 1, isResizable: false, isBounded: true },
     ],
   };
 
@@ -62,7 +64,24 @@ export default function Main({ prefModal, data }) {
       key: "d",
       keyID: "WT",
       comp: <Weather />,
-      
+    },
+    {
+      id: 4,
+      key: "e",
+      keyID: "WT",
+      comp: <Weather />,
+    },
+    {
+      id: 5,
+      key: "f",
+      keyID: "WT",
+      comp: <Weather />,
+    },
+    {
+      id: 6,
+      key: "g",
+      keyID: "WT",
+      comp: <Weather />,
     },
   ];
 

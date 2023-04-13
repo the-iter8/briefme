@@ -1,16 +1,13 @@
-import styles from "./SmallCard.module.css";
-
 import React from "react";
-
 import Text from "../../Text";
-import FetchText from "../../FetchText";
+import styles from "./SmallCard.module.css";
 import { MUIIconStyle } from "../../../utils/LocalData";
 import IconButton from "@mui/material/IconButton";
+import ControlCameraIcon from "@mui/icons-material/ControlCamera";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
-import ControlCameraIcon from "@mui/icons-material/ControlCamera";
-export default function LargeCard(props) {
-  const { keyID, title, source, isEdit, children, localUserPref, setLocalUserPref } = props;
+export default function SmallCard(props) {
+  const { keyID, isEdit, children, localUserPref, setLocalUserPref, title } = props;
 
   const Grabber = () => {
     //put an onClick Fucntion
@@ -72,16 +69,22 @@ export default function LargeCard(props) {
 
   return (
     <div className={styles.root}>
-      <div className={styles.header}>
-        <Grabber />
-      </div>
+      <Grabber />
 
-      <div className={styles.mainContent}>{children}</div>
+      {isEdit ? (
+        <div className={styles.editStub}>
+          <Text size='xs'>{title}</Text>
+        </div>
+      ) : (
+        <div className={styles.mainContent}>{children}</div>
+      )}
 
-      <div className={styles.footer}>
-        {isEdit && <FooterEditIcons />}
-        <FetchText source={source} small />
-      </div>
+      {isEdit && (
+        <div className={styles.footer}>
+          {" "}
+          <FooterEditIcons />
+        </div>
+      )}
     </div>
   );
 }

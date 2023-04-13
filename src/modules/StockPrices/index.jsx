@@ -19,7 +19,7 @@ export default function StockPrices(props) {
           <Text size='xxs' weight='semi-bold'>
             Current Price :{" "}
             <Text variant='span' weight='semi-bold' size='xxs'>
-              {parseFloat(data["Global Quote"]["05. price"])} INR
+              {parseFloat(data["Global Quote"]["05. price"]).toFixed(2)} INR
             </Text>
           </Text>
         </div>
@@ -49,7 +49,6 @@ export default function StockPrices(props) {
     <LargeCard
       title='Stock Prices'
       source='Alpha Vantage'
-      cardName='StockPrice'
       isEdit={isEdit}
       keyID='SP'
       SVG={Stock}
