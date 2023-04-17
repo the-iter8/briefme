@@ -4,8 +4,6 @@ import styles from "./OnThisDay.module.css";
 import Text from "../../components/Text";
 import { OnthisdayStub } from "../../utils/LocalData";
 import ScrollingWrapper from "../../components/ScrollingWrapper";
-import Link from "next/link";
-import Image from "next/image";
 
 export default function OnThisDay(props) {
   const { data, isEdit, localUserPref, setLocalUserPref } = props;
@@ -39,14 +37,20 @@ export default function OnThisDay(props) {
       setLocalUserPref={setLocalUserPref}
     >
       <ScrollingWrapper>
-        {(isEdit ? OnthisdayStub : data?.selected)?.map((item) => {
+        {(isEdit ? OnthisdayStub : data?.selected)?.map((item, index) => {
           const { text, pages } = item;
           const { titles, thumbnail, content_urls } = pages[0];
           const shrunkText = text.split(" ").slice(0, 14).join(" ");
           const shrunkTitle = titles?.normalized?.split(" ").slice(0, 4).join(" ");
 
           return (
-            <Section img={thumbnail?.source} title={shrunkTitle} desc={shrunkText} link={content_urls?.desktop?.page} />
+            <Section
+              key={index}
+              img={thumbnail?.source}
+              title={shrunkTitle}
+              desc={shrunkText}
+              link={content_urls?.desktop?.page}
+            />
           );
         })}
       </ScrollingWrapper>

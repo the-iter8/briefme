@@ -4,7 +4,7 @@
   flex-direction: column;
   /* Change the height accordance to the APi */
   height: 130px;
-  width: 140px;
+  width: 240px;
   z-index: 0;
 
   box-shadow: var(--shadow-large-card);

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styles from "./Main.module.css";
 import dynamic from "next/dynamic";
 import Text from "../../components/Text";
+import useWindowSize from "../../utils/hooks/useWindowSize";
 import { DataContext } from "../../utils/Contexts";
 import AddWidgets from "../AddWidgets/AddWidgets";
 import Button from "../../components/Button/";
@@ -23,19 +24,8 @@ export default function Main({ prefModal, data }) {
   const { userPref } = useContext(DataContext);
   const { openEditPref, setOpenEditPref } = prefModal;
   const { metalData, wikiData, stockData } = data;
-  const layouts = {
-    lg: [
-      { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
-      { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
-      { i: "c", x: 4, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
-      { i: "d", x: 6, y: 0, w: 1.2, h: 1, isResizable: false, isBounded: true },
-      { i: "e", x: 7.2, y: 0, w: 1.2, h: 1, isResizable: false, isBounded: true },
-      { i: "f", x: 8.2, y: 0, w: 1.2, h: 1, isResizable: false, isBounded: true },
-      { i: "g", x: 9.2, y: 1, w: 1.2, h: 1, isResizable: false, isBounded: true },
-    ],
-  };
+  const screen = useWindowSize();
 
-  // <GridLayout className='layout' layout={layout} cols={9} rowHeight={280} width={1200}></GridLayout>;
   const sortedUserArr = userPref?.sort((a, b) => {
     return a.id - b.id;
   });
@@ -62,24 +52,6 @@ export default function Main({ prefModal, data }) {
     {
       id: 3,
       key: "d",
-      keyID: "WT",
-      comp: <Weather />,
-    },
-    {
-      id: 4,
-      key: "e",
-      keyID: "WT",
-      comp: <Weather />,
-    },
-    {
-      id: 5,
-      key: "f",
-      keyID: "WT",
-      comp: <Weather />,
-    },
-    {
-      id: 6,
-      key: "g",
       keyID: "WT",
       comp: <Weather />,
     },
@@ -116,23 +88,37 @@ export default function Main({ prefModal, data }) {
       </div>
     );
   };
+  const calcCols = () => {
+    return screen.width / 128.260869565;
+  };
+
+  const calcLayout = () => {
+    const layout = [
+      { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: true, isBounded: true },
+      { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
+      { i: "c", x: 4, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
+      { i: "d", x: 6, y: 0, w: 2, h: 1, isResizable: false, isBounded: true },
+    ];
+
+    return layout;
+  };
+
   return (
     <div className={styles.root}>
       {userPref?.length !== 0 && openEditPref === false ? (
         <div className={styles.pref}>
-          <ResponsiveGridLayout
-            breakpoints={{ lg: 1200, md: 1000, sm: 768, xs: 480, xxs: 0 }}
-            cols={{ lg: 10, md: 4, sm: 6, xs: 4, xxs: 2 }}
-            rowHeight={140}
-            layouts={layouts}
+          <GridLayout
             className='layout'
-            autoSize={true}
-            compactType={"horizontal"}
+            layout={calcLayout()}
+            allowOverlap={false}
+            cols={calcCols()}
+            rowHeight={140}
+            width={screen.width - 30}
           >
             {dispArr?.map((item, index) => {
               return <div key={item.key}>{item.comp}</div>;
             })}
-          </ResponsiveGridLayout>
+          </GridLayout>
         </div>
       ) : (
         <NoPref />

@@ -1120,3 +1120,6 @@ export const GoldPriceStub = {
   gold: "12345.3",
   silver: "152.235",
 };
+// export const WeatherStub = {
+
+// }
