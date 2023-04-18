@@ -1,11 +1,12 @@
 import useSWR from "swr";
 const WeatherKey = process.env.NEXT_PUBLIC_OPEN_WEATHER;
+
 const useFetchSWR = (link, options) => {
   const fetcher = (link, options) => fetch(link, options).then((res) => res.json());
   const { data, error, isLoading } = useSWR([link, options], fetcher);
-
   return { data, error, isLoading };
 };
+
 
 export const useGoldPrices = async (test) => {
   const options = {

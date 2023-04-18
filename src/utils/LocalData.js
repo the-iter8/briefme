@@ -6,7 +6,6 @@ export const MUIIconStyle = {
   opacity: 0.75,
   borderRadius: "8px",
 };
-
 export const insModalStyle = {
   borderRadius: 3,
   position: "absolute",
@@ -17,7 +16,6 @@ export const insModalStyle = {
   bgcolor: "background.paper",
   p: 4,
 };
-
 export const OnthisdayStub = [
   {
     text: "Dissident Irish republican campaign: Two off-duty British Army soldiers were shot dead by Real IRA paramilitaries outside Massereene Barracks in Antrim, Northern Ireland.",

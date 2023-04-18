@@ -10,9 +10,10 @@ export const auth = getAuth(app);
 export const store = getFirestore(app);
 export const provider = new GoogleAuthProvider();
 
-export const loginWithPopup = () => signInWithRedirect(auth, provider);
+export const loginWithRedirect = () => signInWithRedirect(auth, provider);
 
 export const checkUser = (callback) => onAuthStateChanged(auth, callback);
+
 export const logOut = () => signOut(auth);
 
 // Set it up such a way that all the pref is fetched from the getUser itself somehow.

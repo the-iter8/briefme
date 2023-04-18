@@ -3,13 +3,14 @@ import { UserContext } from "../utils/Contexts";
 import styles from "../styles/Landing.module.css";
 import React, { useContext } from "react";
 
-import { loginWithPopup } from "../utils/Firebase";
+import { loginWithRedirect } from "../utils/Firebase";
 
 export default function Home() {
   const { setCurrentUser } = useContext(UserContext);
 
   async function loginHandle() {
-    const { user } = await loginWithPopup();
+    const { user } = await loginWithRedirect();
+    
     setCurrentUser(user);
   }
 
