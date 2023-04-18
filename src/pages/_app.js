@@ -6,7 +6,7 @@ import "/node_modules/react-resizable/css/styles.css";
 
 import { useRouter } from "next/router";
 import { checkUser } from "../utils/Firebase";
-import LoadingPage from "../views/Loading/Loading";
+import LoadingPage from "../views/Loading";
 import React, { useState, useEffect } from "react";
 import { UserContextProvider } from "../utils/Contexts";
 

@@ -10,7 +10,6 @@ export default function Home() {
 
   async function loginHandle() {
     const { user } = await loginWithRedirect();
-    
     setCurrentUser(user);
   }
 

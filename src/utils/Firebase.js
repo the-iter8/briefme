@@ -49,7 +49,6 @@ export const getPref = async (userObj) => {
 };
 
 export const postUser = async (userObj) => {
-  // Posts the user details on Firestore DB upon completion of the Instruction modal.
   const { uid, email, displayName, photoURL } = userObj;
   // What if the photo url is updateD?
   // set the preferance object

@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 
-import Main from "../views/Main/Main";
-import Navbar from "../views/Navbar/Navbar";
-import InsModal from "../views/InsModal/InsModal";
+import Main from "../views/Main/";
+import Navbar from "../views/Navbar";
+import InsModal from "../views/InsModal";
 import { UserContext } from "../utils/Contexts";
 import { getUserData } from "../utils/Firebase";
 import { bhagwadGitaRefs } from "../utils/data";

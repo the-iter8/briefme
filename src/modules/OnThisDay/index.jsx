@@ -29,7 +29,7 @@ export default function OnThisDay(props) {
 
   return (
     <LargeCard
-      title={`On This Day - add date`}
+      title={`On This Day`}
       source='Wikipedia'
       isEdit={isEdit}
       keyID='OTD'

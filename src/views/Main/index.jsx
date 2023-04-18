@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
-import styles from "./Main.module.css";
 import dynamic from "next/dynamic";
+import React, { useContext } from "react";
+import styles from "./Main.module.css";
 import Text from "../../components/Text";
 import useWindowSize from "../../utils/hooks/useWindowSize";
 import { DataContext } from "../../utils/Contexts";
-import AddWidgets from "../AddWidgets/AddWidgets";
-import Button from "../../components/Button/";
+import { calcLayout } from "../../utils";
+import AddWidgets from "../AddWidgets";
+import Button from "../../components/Button";
 import GridLayout from "react-grid-layout";
 import { Responsive, WidthProvider } from "react-grid-layout";
 
@@ -90,17 +91,6 @@ export default function Main({ prefModal, data }) {
   };
   const calcCols = () => {
     return screen.width / 128.260869565;
-  };
-
-  const calcLayout = () => {
-    const layout = [
-      { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: true, isBounded: true },
-      { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
-      { i: "c", x: 4, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
-      { i: "d", x: 6, y: 0, w: 2, h: 1, isResizable: false, isBounded: true },
-    ];
-
-    return layout;
   };
 
   return (
