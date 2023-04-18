@@ -50,8 +50,6 @@ export const getPref = async (userObj) => {
 
 export const postUser = async (userObj) => {
   const { uid, email, displayName, photoURL } = userObj;
-  // What if the photo url is updateD?
-  // set the preferance object
 
   try {
     const docRef = await addDoc(collection(store, uid), {

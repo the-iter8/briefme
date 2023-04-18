@@ -25,29 +25,38 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wi
   const { currentUser, setLoading } = useContext(UserContext);
   const [openInsModal, setOpenInsModal] = useState(true);
   const [openEditPref, setOpenEditPref] = useState(false);
-
   const [fetchedUserData, setFetchedUserData] = useState({});
   const [userPref, setUserPref] = useState([]);
 
   // Open Edit Pref updates onchange of modal.
+
+  // Making the ins Modal available to normal users.
+
   useEffect(() => {
     if (currentUser) {
       getUserData(currentUser).then((resp) => {
-        setLoading(false);
         const { userData, exists } = resp;
+
         setOpenInsModal(Boolean(exists));
         if (exists) {
           setFetchedUserData(userData);
           setUserPref(userData.pref);
         }
       });
+      setLoading(false);
     }
-  }, [currentUser, openInsModal]);
+  }, [currentUser]);
+  // Removed the insModal here from UseEffect, hence the profile wont change if new user logs in NEED TO ADD IT OR FIX IT SOMEHOW.
 
   return (
     <>
       <ISRTimeProvider value={{ fetchedISROn }}>
-        <Navbar data={bhagwadGitaData} prefModal={{ openEditPref, setOpenEditPref }} userData={fetchedUserData} />
+        <Navbar
+          data={bhagwadGitaData}
+          prefModal={{ openEditPref, setOpenEditPref }}
+          userData={fetchedUserData}
+          setOpenInsModal={setOpenInsModal}
+        />
         <DataContextProvider value={{ userPref }}>
           <Main prefModal={{ openEditPref, setOpenEditPref }} data={{ metalData, wikiData, stockData }} />
         </DataContextProvider>
@@ -72,11 +81,11 @@ export async function getStaticProps() {
 
   return {
     props: {
-      bhagwadGitaData,
+      bhagwadGitaData: bhagwadGitaData?.translations[0]?.description,
       fetchedISROn,
       metalData,
       stockData,
-      wikiData,
+      wikiData: wikiData?.selected,
     },
     revalidate: 86400,
   };

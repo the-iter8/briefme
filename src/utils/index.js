@@ -11,13 +11,18 @@ export const convertToC = (val) => {
   return (val - 273.15).toFixed(0) + "° C";
 };
 
-export const calcLayout = () => {
-  const layout = [
+export const getLayout = () => {
+  const defaultLayout = [
     { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
     { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
     { i: "c", x: 4, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
     { i: "d", x: 6, y: 0, w: 2, h: 1, isResizable: false, isBounded: true },
   ];
-
-  return layout;
+  if (global.localStorage.getItem("layout")) {
+    const layout = JSON.parse(global.localStorage.getItem("layout"));
+    return layout;
+  } else {
+    return defaultLayout;
+  }
 };
+

@@ -5,26 +5,17 @@ import { logOut } from "../../utils/Firebase";
 
 import Text from "../../components/Text";
 import NavbarQuote from "../../modules/TheBhagwadGita/NavbarQuote";
-import { MUIIconStyle } from "../../utils/LocalData";
+import { MUIIconStyle, MUIEditBTN } from "../../utils/LocalData";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
-import SettingsIcon from "@mui/icons-material/Settings";
-
+import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 export default function Navbar(props) {
-  const { data, prefModal, userData } = props;
+  const { data, prefModal, userData, setOpenInsModal } = props;
   const { setOpenEditPref } = prefModal;
 
   // remove this below
-  const MUIIconInlineStyle = {
-    padding: 0.8,
-    opacity: 0.75,
-    paddingTop: 0.4,
-    paddingBottom: 0.4,
-    borderRadius: "8px",
 
-    boxShadow: "0px 4px 6px -2px rgba(0, 0, 0, 0.75)",
-  };
   const UserProfile = () => {
     return (
       <div className={styles.profileSection}>
@@ -43,13 +34,21 @@ export default function Navbar(props) {
           <IconButton
             sx={MUIIconStyle}
             onClick={() => {
+              setOpenInsModal(false);
+            }}
+          >
+            <HelpOutlineIcon size='small' />
+          </IconButton>
+          <IconButton
+            sx={MUIIconStyle}
+            onClick={() => {
               logOut();
             }}
           >
             <PowerSettingsNewIcon size='small' />
           </IconButton>
           <IconButton
-            sx={MUIIconInlineStyle}
+            sx={MUIEditBTN}
             onClick={() => {
               setOpenEditPref(true);
             }}

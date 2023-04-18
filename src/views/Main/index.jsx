@@ -1,14 +1,13 @@
-import dynamic from "next/dynamic";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Main.module.css";
+import dynamic from "next/dynamic";
 import Text from "../../components/Text";
 import useWindowSize from "../../utils/hooks/useWindowSize";
 import { DataContext } from "../../utils/Contexts";
-import { calcLayout } from "../../utils";
+import { getLayout } from "../../utils";
 import AddWidgets from "../AddWidgets";
 import Button from "../../components/Button";
 import GridLayout from "react-grid-layout";
-import { Responsive, WidthProvider } from "react-grid-layout";
 
 //Dynamic Imports
 const MetalPrices = dynamic(() => import("../../modules/MetalPrices"), { loading: () => "Loading..." });
@@ -20,8 +19,9 @@ const Weather = dynamic(() => import("../../modules/Weather"), {
   loading: () => "Loading...",
 });
 
-const ResponsiveGridLayout = WidthProvider(Responsive);
 export default function Main({ prefModal, data }) {
+  const [layout, setLayout] = useState(getLayout());
+
   const { userPref } = useContext(DataContext);
   const { openEditPref, setOpenEditPref } = prefModal;
   const { metalData, wikiData, stockData } = data;
@@ -92,6 +92,10 @@ export default function Main({ prefModal, data }) {
   const calcCols = () => {
     return screen.width / 128.260869565;
   };
+  const handleLayoutChange = (layout) => {
+    global.localStorage.setItem("layout", JSON.stringify(layout));
+    setLayout(JSON.parse(global.localStorage.getItem("layout")));
+  };
 
   return (
     <div className={styles.root}>
@@ -99,11 +103,12 @@ export default function Main({ prefModal, data }) {
         <div className={styles.pref}>
           <GridLayout
             className='layout'
-            layout={calcLayout()}
+            layout={layout}
             allowOverlap={false}
             cols={calcCols()}
             rowHeight={140}
             width={screen.width - 30}
+            onLayoutChange={handleLayoutChange}
           >
             {dispArr?.map((item, index) => {
               return <div key={item.key}>{item.comp}</div>;

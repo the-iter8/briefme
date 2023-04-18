@@ -73,7 +73,7 @@ export default function LargeCard(props) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Text align='center' size='xs'>
+        <Text align='center' size='xs' weight="semi-bold">
           {title}
         </Text>
         <Grabber />

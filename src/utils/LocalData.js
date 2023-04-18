@@ -6,6 +6,15 @@ export const MUIIconStyle = {
   opacity: 0.75,
   borderRadius: "8px",
 };
+export const MUIEditBTN = {
+  padding: 0.8,
+  opacity: 0.75,
+  paddingTop: 0.4,
+  paddingBottom: 0.4,
+  borderRadius: "8px",
+
+  boxShadow: "0px 4px 6px -2px rgba(0, 0, 0, 0.75)",
+};
 export const insModalStyle = {
   borderRadius: 3,
   position: "absolute",

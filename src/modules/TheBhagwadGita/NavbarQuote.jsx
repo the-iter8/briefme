@@ -8,7 +8,7 @@ export default function NavbarQuote({ data }) {
   return (
     <div className={styles.root}>
       <Text size='sm' weight='semi-bold' align='center'>
-        {data?.translations[0]?.description}
+        {data}
       </Text>
 
       <FetchText source='The BhagwadGita API' />
