@@ -23,7 +23,7 @@ export const getLayout = (dispArr) => {
     const currentLayout = JSON.parse(global.localStorage.getItem("layout"));
     const newLayout = [...currentLayout];
 
-    dispArr.forEach((element) => {
+    dispArr?.forEach((element) => {
       const index = defaultLayout.findIndex((el) => el.i === element.key);
       if (index !== -1 && !newLayout.find((el) => el.i === element.key)) {
         newLayout.push(defaultLayout[index]);

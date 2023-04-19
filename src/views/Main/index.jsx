@@ -20,16 +20,12 @@ const Weather = dynamic(() => import("../../modules/Weather"), {
 });
 
 export default function Main({ prefModal, data }) {
-  let dispArr = [];
   const [layout, setLayout] = useState();
+  const [dispArr, setDispArr] = useState([]);
   const { userPref } = useContext(DataContext);
   const { openEditPref, setOpenEditPref } = prefModal;
   const { metalData, wikiData, stockData } = data;
   const screen = useWindowSize();
-
-  const sortedUserArr = userPref?.sort((a, b) => {
-    return a.id - b.id;
-  });
 
   const availCardArray = [
     {
@@ -57,13 +53,7 @@ export default function Main({ prefModal, data }) {
       comp: <Weather />,
     },
   ];
-  availCardArray.forEach((item) => {
-    sortedUserArr.forEach((sortItem) => {
-      if (sortItem.keyID === item.keyID) {
-        dispArr.push(item);
-      }
-    });
-  });
+
   const NoPref = () => {
     return (
       <div className={styles.noPref}>
@@ -96,7 +86,19 @@ export default function Main({ prefModal, data }) {
 
   useEffect(() => {
     // When refresh, dispArr changes (the page reloads once the close btn is clicked.), hence the layout is rendered.
-    setLayout(getLayout(dispArr));
+    let tempArr = [];
+    const sortedUserArr = userPref?.sort((a, b) => {
+      return a.id - b.id;
+    });
+    availCardArray.forEach((item) => {
+      sortedUserArr.forEach((sortItem) => {
+        if (sortItem.keyID === item.keyID) {
+          tempArr.push(item);
+        }
+      });
+    });
+    setDispArr(tempArr);
+    setLayout(getLayout(tempArr));
   }, [userPref]);
 
   return (

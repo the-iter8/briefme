@@ -27,6 +27,7 @@ export default function MetalPrice(props) {
       </div>
     );
   };
+
   return (
     <LargeCard
       title='24k Gold and Silver Prices.'
@@ -40,13 +41,13 @@ export default function MetalPrice(props) {
       <SectionOne
         SVG={<Gold />}
         title='Current Gold Price'
-        priceUSD={isEdit ? `${GoldPriceStub.gold} USD/Oz` : `${data?.gold} USD/Oz`}
+        priceUSD={isEdit || !data ? `${GoldPriceStub.gold} USD/Oz` : `${data?.gold} USD/Oz`}
         priceINR=''
       />
       <SectionOne
         SVG={<Silver />}
         title='Current Silver Price'
-        priceUSD={isEdit ? `${GoldPriceStub.silver} USD/Oz` : `${data?.silver} USD/Oz`}
+        priceUSD={isEdit || !data ? `${GoldPriceStub.silver} USD/Oz` : `${data?.silver} USD/Oz`}
         priceINR=''
       />
     </LargeCard>
