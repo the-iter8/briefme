@@ -1,10 +1,18 @@
-const XapiKey = process.env.RAPID_API_KEY;
-const StockapiKey = process.env.ALPHA_VANTANGE;
+import useSWR from "swr";
+const WeatherKey = process.env.NEXT_PUBLIC_OPEN_WEATHER;
+
+const useFetchSWR = (link, options) => {
+  const fetcher = (link, options) => fetch(link, options).then((res) => res.json());
+  const { data, error, isLoading } = useSWR([link, options], fetcher);
+  return { data, error, isLoading };
+};
+
+
 export const useGoldPrices = async (test) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": XapiKey,
+      "X-RapidAPI-Key": process.env.RAPID_API_KEY,
       "X-RapidAPI-Host": "gold-price-live.p.rapidapi.com",
     },
   };
@@ -21,7 +29,7 @@ export const useBhagwadGitaQuote = async (ref) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": XapiKey,
+      "X-RapidAPI-Key": process.env.RAPID_API_KEY,
       "X-RapidAPI-Host": "bhagavad-gita3.p.rapidapi.com",
     },
   };
@@ -53,18 +61,28 @@ export const useWikiData = async (ref) => {
   const wikiData = await raw.json();
   return { wikiData, isLoading: !wikiData };
 };
-
 export const useStockPrice = async () => {
   const symbol = "TCS.BSE";
   const options = {
     method: "GET",
   };
 
-  const link = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${StockapiKey}`;
+  const link = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${process.env.ALPHA_VANTANGE}`;
   const raw = await fetch(link, options);
   const stockData = await raw.json();
 
   return { stockData, isLoading: !stockData };
+};
+
+export const useWeather = () => {
+  const lat = 28.6479;
+  const long = 77.2867;
+  const options = {
+    method: "GET",
+  };
+  const link = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${WeatherKey}`;
+  const { error, isLoading, data } = useFetchSWR(link, options);
+  return { data, error, isLoading };
 };
 
 //For testing

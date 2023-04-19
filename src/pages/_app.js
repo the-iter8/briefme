@@ -1,17 +1,18 @@
 import "../styles/globals.css";
 import "../styles/variables.css";
 import "../styles/Text.css";
+import "/node_modules/react-grid-layout/css/styles.css";
+import "/node_modules/react-resizable/css/styles.css";
 
 import { useRouter } from "next/router";
 import { checkUser } from "../utils/Firebase";
-import LoadingPage from "../views/Loading/Loading";
+import LoadingPage from "../views/Loading";
 import React, { useState, useEffect } from "react";
 import { UserContextProvider } from "../utils/Contexts";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const [currentUser, setCurrentUser] = useState();
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

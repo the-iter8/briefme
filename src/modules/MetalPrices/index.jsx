@@ -31,7 +31,6 @@ export default function MetalPrice(props) {
     <LargeCard
       title='24k Gold and Silver Prices.'
       source='Gold Price - Live'
-      cardName='MetalPrice'
       isEdit={isEdit}
       keyID='MP'
       SVG={MetalStack}

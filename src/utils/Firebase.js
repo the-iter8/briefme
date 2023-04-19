@@ -10,9 +10,10 @@ export const auth = getAuth(app);
 export const store = getFirestore(app);
 export const provider = new GoogleAuthProvider();
 
-export const loginWithPopup = () => signInWithRedirect(auth, provider);
+export const loginWithRedirect = () => signInWithRedirect(auth, provider);
 
 export const checkUser = (callback) => onAuthStateChanged(auth, callback);
+
 export const logOut = () => signOut(auth);
 
 // Set it up such a way that all the pref is fetched from the getUser itself somehow.
@@ -48,10 +49,7 @@ export const getPref = async (userObj) => {
 };
 
 export const postUser = async (userObj) => {
-  // Posts the user details on Firestore DB upon completion of the Instruction modal.
   const { uid, email, displayName, photoURL } = userObj;
-  // What if the photo url is updateD?
-  // set the preferance object
 
   try {
     const docRef = await addDoc(collection(store, uid), {

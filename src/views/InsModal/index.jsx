@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -6,7 +6,8 @@ import { UserContext } from "../../utils/Contexts";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { insModalStyle } from "../../utils/LocalData";
-import { postUser, getUser } from "../../utils/Firebase";
+import { postUser } from "../../utils/Firebase";
+import { useRouter } from "next/router";
 
 import Text from "../../components/Text";
 import Box from "@mui/material/Box";
@@ -14,9 +15,10 @@ import Modal from "@mui/material/Modal";
 import styles from "./InsModal.module.css";
 import Button from "../../components/Button";
 
-export default function InsModal({ toggle }) {
-  const { openInsModal, setOpenInsModal } = toggle;
+export default function InsModal(props) {
+  const { openInsModal, setOpenInsModal, fetchedUserData } = props.toggleData;
   const { currentUser } = useContext(UserContext);
+  const router = useRouter();
 
   const handleCloseInsModal = () => setOpenInsModal(true);
 
@@ -74,12 +76,16 @@ export default function InsModal({ toggle }) {
             fontSize='xs'
             fontWeight='semi-bold'
             onClick={() => {
-              postUser(currentUser);
+              //Basically check the second if inside the useEffect. Its done to check if the onboarding has already done or not and reloads to set the profile pic and stuff.
+              if (!fetchedUserData) {
+                postUser(currentUser);
+                router.reload(window.location.pathname);
+              }
               handleCloseInsModal();
               //   Sucess Pop nottifcioaton
             }}
           >
-            Lets Roll !
+            {fetchedUserData ? "Ok Got it" : "Lets Roll !"}
           </Button>
         </div>
       </Box>

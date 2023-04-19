@@ -6,7 +6,15 @@ export const MUIIconStyle = {
   opacity: 0.75,
   borderRadius: "8px",
 };
+export const MUIEditBTN = {
+  padding: 0.8,
+  opacity: 0.75,
+  paddingTop: 0.4,
+  paddingBottom: 0.4,
+  borderRadius: "8px",
 
+  boxShadow: "0px 4px 6px -2px rgba(0, 0, 0, 0.75)",
+};
 export const insModalStyle = {
   borderRadius: 3,
   position: "absolute",
@@ -17,7 +25,6 @@ export const insModalStyle = {
   bgcolor: "background.paper",
   p: 4,
 };
-
 export const OnthisdayStub = [
   {
     text: "Dissident Irish republican campaign: Two off-duty British Army soldiers were shot dead by Real IRA paramilitaries outside Massereene Barracks in Antrim, Northern Ireland.",
@@ -1120,3 +1127,6 @@ export const GoldPriceStub = {
   gold: "12345.3",
   silver: "152.235",
 };
+// export const WeatherStub = {
+
+// }
