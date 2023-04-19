@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./Main.module.css";
 import dynamic from "next/dynamic";
 import Text from "../../components/Text";
@@ -20,8 +20,8 @@ const Weather = dynamic(() => import("../../modules/Weather"), {
 });
 
 export default function Main({ prefModal, data }) {
-  const [layout, setLayout] = useState(getLayout());
-
+  let dispArr = [];
+  const [layout, setLayout] = useState();
   const { userPref } = useContext(DataContext);
   const { openEditPref, setOpenEditPref } = prefModal;
   const { metalData, wikiData, stockData } = data;
@@ -57,8 +57,6 @@ export default function Main({ prefModal, data }) {
       comp: <Weather />,
     },
   ];
-
-  let dispArr = [];
   availCardArray.forEach((item) => {
     sortedUserArr.forEach((sortItem) => {
       if (sortItem.keyID === item.keyID) {
@@ -66,7 +64,6 @@ export default function Main({ prefModal, data }) {
       }
     });
   });
-
   const NoPref = () => {
     return (
       <div className={styles.noPref}>
@@ -97,6 +94,11 @@ export default function Main({ prefModal, data }) {
     setLayout(JSON.parse(global.localStorage.getItem("layout")));
   };
 
+  useEffect(() => {
+    // When refresh, dispArr changes (the page reloads once the close btn is clicked.), hence the layout is rendered.
+    setLayout(getLayout(dispArr));
+  }, [userPref]);
+
   return (
     <div className={styles.root}>
       {userPref?.length !== 0 && openEditPref === false ? (
@@ -111,7 +113,11 @@ export default function Main({ prefModal, data }) {
             onLayoutChange={handleLayoutChange}
           >
             {dispArr?.map((item, index) => {
-              return <div key={item.key}>{item.comp}</div>;
+              return (
+                <div key={item.key} data-grid={{ w: 2, h: 2, isResizable: false, isBounded: true }}>
+                  {item.comp}
+                </div>
+              );
             })}
           </GridLayout>
         </div>

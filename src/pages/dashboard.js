@@ -25,7 +25,7 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wi
   const { currentUser, setLoading } = useContext(UserContext);
   const [openInsModal, setOpenInsModal] = useState(true);
   const [openEditPref, setOpenEditPref] = useState(false);
-  const [fetchedUserData, setFetchedUserData] = useState({});
+  const [fetchedUserData, setFetchedUserData] = useState(null);
   const [userPref, setUserPref] = useState([]);
 
   // Open Edit Pref updates onchange of modal.
@@ -36,8 +36,8 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wi
     if (currentUser) {
       getUserData(currentUser).then((resp) => {
         const { userData, exists } = resp;
-
         setOpenInsModal(Boolean(exists));
+
         if (exists) {
           setFetchedUserData(userData);
           setUserPref(userData.pref);
@@ -61,7 +61,7 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wi
           <Main prefModal={{ openEditPref, setOpenEditPref }} data={{ metalData, wikiData, stockData }} />
         </DataContextProvider>
       </ISRTimeProvider>
-      <InsModal toggle={{ openInsModal, setOpenInsModal }} />
+      <InsModal toggleData={{ openInsModal, setOpenInsModal, fetchedUserData }} />
     </>
   );
 }
