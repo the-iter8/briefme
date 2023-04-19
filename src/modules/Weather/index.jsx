@@ -12,7 +12,6 @@ import { convertUnixTo24Hour, convertToC } from "../../utils";
 export default function Weather(props) {
   const { isEdit, localUserPref, setLocalUserPref } = props;
   const { data, error, isLoading } = useWeather();
-  console.log(data?.weather[0]?.main);
 
   const SectionOne = () => {
     return (

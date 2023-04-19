@@ -12,8 +12,6 @@ export const convertToC = (val) => {
 };
 
 export const getLayout = (dispArr) => {
-  console.log(dispArr);
-  // const dispaArr =
   const defaultLayout = [
     { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
     { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
