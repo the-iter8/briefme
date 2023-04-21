@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 export function convertUnixTo24Hour(unixTimestamp) {
   var date = new Date(unixTimestamp * 1000); // Multiply by 1000 to convert seconds to milliseconds
   var hours = date.getHours();
@@ -6,10 +7,6 @@ export function convertUnixTo24Hour(unixTimestamp) {
   var formattedTime = hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0");
   return formattedTime;
 }
-
-export const convertToC = (val) => {
-  return (val - 273.15).toFixed(0) + "° C";
-};
 
 export const getLayout = () => {
   const defaultLayout = [
@@ -26,4 +23,38 @@ export const getLayout = () => {
   } else {
     return defaultLayout;
   }
+};
+
+export const handleAddLocalPref = (keyID, title, localUserPref, setLocalUserPref) => {
+  let flag = 0;
+  localUserPref?.forEach((item) => {
+    if (item.keyID === keyID) flag++;
+  });
+  if (flag === 0 && localUserPref) {
+    const newArr = [
+      ...localUserPref,
+      {
+        keyID: keyID,
+      },
+    ];
+    setLocalUserPref(newArr);
+    toast(`Added ${title}`);
+  }
+};
+
+export const handleRemovePref = (keyID, title, localUserPref, setLocalUserPref) => {
+  let newArr = [];
+  let flag = 0;
+  newArr = localUserPref?.filter((item) => {
+    if (item.keyID === keyID) flag = 1;
+    return item.keyID !== keyID;
+  });
+  if (flag) {
+    setLocalUserPref(newArr);
+    toast(`Removed ${title}`);
+  }
+};
+
+export const convertToC = (val) => {
+  return (val - 273.15).toFixed(0) + "° C";
 };

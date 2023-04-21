@@ -1,16 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import styles from "./AddWidgets.module.css";
-import { DataContext, UserContext } from "../../utils/Contexts";
-import { postPref } from "../../utils/Firebase";
-import Text from "../../components/Text";
-import Button from "../../components/Button";
-import Dialog from "@mui/material/Dialog";
+import { useRouter } from "next/router";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import React, { useContext, useState, useEffect } from "react";
+
 import Slide from "@mui/material/Slide";
+import Text from "../../components/Text";
 import AppBar from "@mui/material/AppBar";
+import Dialog from "@mui/material/Dialog";
+import styles from "./AddWidgets.module.css";
+import Button from "../../components/Button";
+import { postPref } from "../../utils/Firebase";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { DataContext, UserContext } from "../../utils/Contexts";
 
 //Dynamic Imports change the loading shit.
 
@@ -66,9 +69,10 @@ export default function AddWidgets({ prefModal }) {
     router.reload(window.location.pathname);
   };
 
-  const handleSavePref = () => {
+  const handleSavePref = async () => {
     // Show a popup that the preferance has been updated.
-    postPref(currentUser, localUserPref);
+    await postPref(currentUser, localUserPref);
+    toast.success("Your preferance has been saved.");
   };
 
   const Nav = () => {

@@ -5,7 +5,7 @@ import Navbar from "../views/Navbar";
 import InsModal from "../views/InsModal";
 import { UserContext } from "../utils/Contexts";
 import { getUserData } from "../utils/Firebase";
-import { bhagwadGitaRefs } from "../utils/data";
+import { bhagwadGitaRefs } from "../utils/LocalData";
 import {
   useTime,
   useWikiData,
@@ -15,6 +15,7 @@ import {
   useStockPrice,
 } from "../api/Endpoints";
 import { ISRTimeProvider, DataContextProvider } from "../utils/Contexts";
+import { ToastContainer } from "react-toastify";
 
 export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wikiData, stockData }) {
   // see the fetched on is going to be used at many places and we cant just use it in the context because of the fact that all the things will reload if the context is changed. Now the ISR context changes and the whole application under it rerenders, but it does not matters as the SWR are already on the client side and can send multiple request.s
@@ -62,6 +63,19 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wi
         </DataContextProvider>
       </ISRTimeProvider>
       <InsModal toggleData={{ openInsModal, setOpenInsModal, fetchedUserData }} />
+      <ToastContainer
+        position='bottom-left'
+        hideProgressBar={false}
+        pauseOnHover={false}
+        newestOnTop={false}
+        autoClose={2000}
+        pauseOnFocusLoss
+        closeOnClick
+        theme='light'
+        rtl={false}
+        limit={2}
+        draggable
+      />
     </>
   );
 }

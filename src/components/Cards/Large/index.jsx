@@ -1,14 +1,16 @@
 import styles from "./LargeCard.module.css";
 
-import React, { useContext, useState } from "react";
-import { DataContext } from "../../../utils/Contexts";
+import React from "react";
+
 import Text from "../../Text";
 import FetchText from "../../FetchText";
-import { MUIIconStyle } from "../../../utils/LocalData";
+import { toast } from "react-toastify";
 import IconButton from "@mui/material/IconButton";
+import { MUIIconStyle } from "../../../utils/LocalData";
+import ControlCameraIcon from "@mui/icons-material/ControlCamera";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
-import ControlCameraIcon from "@mui/icons-material/ControlCamera";
+import { handleAddLocalPref, handleRemovePref } from "../../../utils";
 export default function LargeCard(props) {
   const { keyID, SVG, title, source, isEdit, children, localUserPref, setLocalUserPref } = props;
 
@@ -21,39 +23,13 @@ export default function LargeCard(props) {
     );
   };
 
-  const handleAddLocalPref = () => {
-    let flag = 0;
-    localUserPref?.forEach((item) => {
-      if (item.keyID === keyID) flag++;
-    });
-    if (flag === 0 && localUserPref) {
-      const newArr = [
-        ...localUserPref,
-        {
-          keyID: keyID,
-        },
-      ];
-      setLocalUserPref(newArr);
-    }
-  };
-
-  const handleRemovePref = () => {
-    let newArr = [];
-    let flag = 0;
-    newArr = localUserPref?.filter((item) => {
-      if (item.keyID === keyID) flag = 1;
-      return item.keyID !== keyID;
-    });
-    if (flag) setLocalUserPref(newArr);
-  };
-
   const FooterEditIcons = () => {
     return (
       <div className={styles.footerIcons}>
         <IconButton
           sx={MUIIconStyle}
           onClick={() => {
-            handleAddLocalPref();
+            handleAddLocalPref(keyID, title, localUserPref, setLocalUserPref);
           }}
         >
           <AddCircleOutlinedIcon />
@@ -61,7 +37,7 @@ export default function LargeCard(props) {
         <IconButton
           sx={MUIIconStyle}
           onClick={() => {
-            handleRemovePref();
+            handleRemovePref(keyID, title, localUserPref, setLocalUserPref);
           }}
         >
           <RemoveCircleOutlinedIcon />
@@ -73,7 +49,7 @@ export default function LargeCard(props) {
   return (
     <div className={styles.root}>
       <div className={styles.header}>
-        <Text align='center' size='xs' weight="semi-bold">
+        <Text align='center' size='xs' weight='semi-bold'>
           {title}
         </Text>
         <Grabber />
