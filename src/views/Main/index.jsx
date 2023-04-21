@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Main.module.css";
 import dynamic from "next/dynamic";
 import Text from "../../components/Text";
@@ -7,7 +7,8 @@ import { DataContext } from "../../utils/Contexts";
 import { getLayout } from "../../utils";
 import AddWidgets from "../AddWidgets";
 import Button from "../../components/Button";
-import GridLayout from "react-grid-layout";
+import ReactGridLayout from "react-grid-layout";
+
 
 //Dynamic Imports
 const MetalPrices = dynamic(() => import("../../modules/MetalPrices"), { loading: () => "Loading..." });
@@ -97,7 +98,7 @@ export default function Main({ prefModal, data }) {
     <div className={styles.root}>
       {userPref?.length !== 0 && openEditPref === false ? (
         <div className={styles.pref}>
-          <GridLayout
+          <ReactGridLayout
             className='layout'
             layout={layout}
             allowOverlap={false}
@@ -113,7 +114,7 @@ export default function Main({ prefModal, data }) {
                 </div>
               );
             })}
-          </GridLayout>
+          </ReactGridLayout>
         </div>
       ) : (
         <NoPref />

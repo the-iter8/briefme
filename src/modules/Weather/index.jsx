@@ -60,7 +60,11 @@ export default function Weather(props) {
       localUserPref={localUserPref}
       setLocalUserPref={setLocalUserPref}
     >
-      {isLoading || !data ? <div>loading.. If this shows for too long, that means there is some issue with the API.</div> : <SectionOne />}
+      {isLoading || !data ? (
+        <div>loading.. If this shows for too long, that means there is some issue with the API.</div>
+      ) : (
+        <SectionOne />
+      )}
     </SmallCard>
   );
 }

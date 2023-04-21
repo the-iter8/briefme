@@ -73,6 +73,7 @@ export async function getStaticProps() {
 
   const ref = day && bhagwadGitaRefs[day];
   const { bhagwadGitaData } = await useBhagwadGitaQuote(ref);
+
   //For testing the gold prices.
 
   const { metalData } = await useGoldPricesTest();
