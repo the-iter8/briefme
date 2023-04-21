@@ -8,6 +8,7 @@ import { StockPriceStub } from "../../utils/LocalData";
 
 export default function StockPrices(props) {
   const { isEdit, localUserPref, setLocalUserPref, data } = props;
+  console.log(data);
 
   const SectionOne = ({ data }) => {
     return (
@@ -55,7 +56,7 @@ export default function StockPrices(props) {
       localUserPref={localUserPref}
       setLocalUserPref={setLocalUserPref}
     >
-      <ScrollingWrapper>{<SectionOne data={isEdit ? StockPriceStub : data} />}</ScrollingWrapper>
+      <ScrollingWrapper>{<SectionOne data={isEdit || !data ? StockPriceStub : data} />}</ScrollingWrapper>
     </LargeCard>
   );
 }

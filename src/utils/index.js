@@ -11,7 +11,7 @@ export const convertToC = (val) => {
   return (val - 273.15).toFixed(0) + "° C";
 };
 
-export const getLayout = (dispArr) => {
+export const getLayout = () => {
   const defaultLayout = [
     { i: "a", x: 0, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
     { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
@@ -21,15 +21,8 @@ export const getLayout = (dispArr) => {
 
   if (global.localStorage.getItem("layout")) {
     const currentLayout = JSON.parse(global.localStorage.getItem("layout"));
-    const newLayout = [...currentLayout];
 
-    dispArr?.forEach((element) => {
-      const index = defaultLayout.findIndex((el) => el.i === element.key);
-      if (index !== -1 && !newLayout.find((el) => el.i === element.key)) {
-        newLayout.push(defaultLayout[index]);
-      }
-    });
-    return newLayout;
+    return currentLayout;
   } else {
     return defaultLayout;
   }

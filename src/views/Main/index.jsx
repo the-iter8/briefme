@@ -20,9 +20,8 @@ const Weather = dynamic(() => import("../../modules/Weather"), {
 });
 
 export default function Main({ prefModal, data }) {
-  const [layout, setLayout] = useState();
-  const [dispArr, setDispArr] = useState([]);
   const { userPref } = useContext(DataContext);
+  const [layout, setLayout] = useState(getLayout());
   const { openEditPref, setOpenEditPref } = prefModal;
   const { metalData, wikiData, stockData } = data;
   const screen = useWindowSize();
@@ -53,7 +52,17 @@ export default function Main({ prefModal, data }) {
       comp: <Weather />,
     },
   ];
-
+  let tempPrefArr = [];
+  const sortedUserArr = userPref?.sort((a, b) => {
+    return a.id - b.id;
+  });
+  availCardArray.forEach((item) => {
+    sortedUserArr.forEach((sortItem) => {
+      if (sortItem.keyID === item.keyID) {
+        tempPrefArr.push(item);
+      }
+    });
+  });
   const NoPref = () => {
     return (
       <div className={styles.noPref}>
@@ -84,23 +93,6 @@ export default function Main({ prefModal, data }) {
     setLayout(JSON.parse(global.localStorage.getItem("layout")));
   };
 
-  useEffect(() => {
-    // When refresh, dispArr changes (the page reloads once the close btn is clicked.), hence the layout is rendered.
-    let tempArr = [];
-    const sortedUserArr = userPref?.sort((a, b) => {
-      return a.id - b.id;
-    });
-    availCardArray.forEach((item) => {
-      sortedUserArr.forEach((sortItem) => {
-        if (sortItem.keyID === item.keyID) {
-          tempArr.push(item);
-        }
-      });
-    });
-    setDispArr(tempArr);
-    setLayout(getLayout(tempArr));
-  }, [userPref]);
-
   return (
     <div className={styles.root}>
       {userPref?.length !== 0 && openEditPref === false ? (
@@ -114,9 +106,9 @@ export default function Main({ prefModal, data }) {
             width={screen.width - 30}
             onLayoutChange={handleLayoutChange}
           >
-            {dispArr?.map((item, index) => {
+            {tempPrefArr?.map((item, index) => {
               return (
-                <div key={item.key} data-grid={{ w: 2, h: 2, isResizable: false, isBounded: true }}>
+                <div key={item.key} data-grid={{ w: 2, h: 2, x: 0, y: 0, isResizable: false, isBounded: true }}>
                   {item.comp}
                 </div>
               );

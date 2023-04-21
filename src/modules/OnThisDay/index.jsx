@@ -37,7 +37,7 @@ export default function OnThisDay(props) {
       setLocalUserPref={setLocalUserPref}
     >
       <ScrollingWrapper>
-        {(isEdit ? OnthisdayStub : data)?.map((item, index) => {
+        {(isEdit || !data ? OnthisdayStub : data)?.map((item, index) => {
           const { text, pages } = item;
           const { titles, thumbnail, content_urls } = pages[0];
           const shrunkText = text.split(" ").slice(0, 14).join(" ");
