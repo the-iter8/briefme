@@ -8,7 +8,7 @@ import { getLayout } from "../../utils";
 import AddWidgets from "../AddWidgets";
 import Button from "../../components/Button";
 import ReactGridLayout from "react-grid-layout";
-
+import { toast } from "react-toastify";
 
 //Dynamic Imports
 const MetalPrices = dynamic(() => import("../../modules/MetalPrices"), { loading: () => "Loading..." });
@@ -92,6 +92,7 @@ export default function Main({ prefModal, data }) {
   const handleLayoutChange = (layout) => {
     global.localStorage.setItem("layout", JSON.stringify(layout));
     setLayout(JSON.parse(global.localStorage.getItem("layout")));
+    toast.success("The preferred layout has been loaded/saved.");
   };
 
   return (

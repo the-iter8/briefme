@@ -1,8 +1,9 @@
 import React from "react";
 import Text from "../../Text";
 import styles from "./SmallCard.module.css";
-import { MUIIconStyle } from "../../../utils/LocalData";
 import IconButton from "@mui/material/IconButton";
+import { MUIIconStyle } from "../../../utils/LocalData";
+import { handleAddLocalPref, handleRemovePref } from "../../../utils";
 import ControlCameraIcon from "@mui/icons-material/ControlCamera";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
@@ -18,39 +19,13 @@ export default function SmallCard(props) {
     );
   };
 
-  const handleAddLocalPref = () => {
-    let flag = 0;
-    localUserPref?.forEach((item) => {
-      if (item.keyID === keyID) flag++;
-    });
-    if (flag === 0 && localUserPref) {
-      const newArr = [
-        ...localUserPref,
-        {
-          keyID: keyID,
-        },
-      ];
-      setLocalUserPref(newArr);
-    }
-  };
-
-  const handleRemovePref = () => {
-    let newArr = [];
-    let flag = 0;
-    newArr = localUserPref?.filter((item) => {
-      if (item.keyID === keyID) flag = 1;
-      return item.keyID !== keyID;
-    });
-    if (flag) setLocalUserPref(newArr);
-  };
-
   const FooterEditIcons = () => {
     return (
       <div className={styles.footerIcons}>
         <IconButton
           sx={MUIIconStyle}
           onClick={() => {
-            handleAddLocalPref();
+            handleAddLocalPref(keyID, title, localUserPref, setLocalUserPref);
           }}
         >
           <AddCircleOutlinedIcon />
@@ -58,7 +33,7 @@ export default function SmallCard(props) {
         <IconButton
           sx={MUIIconStyle}
           onClick={() => {
-            handleRemovePref();
+            handleRemovePref(keyID, title, localUserPref, setLocalUserPref);
           }}
         >
           <RemoveCircleOutlinedIcon />

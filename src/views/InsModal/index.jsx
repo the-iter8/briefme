@@ -9,6 +9,7 @@ import { insModalStyle } from "../../utils/LocalData";
 import { postUser } from "../../utils/Firebase";
 import { useRouter } from "next/router";
 
+
 import Text from "../../components/Text";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -93,7 +94,6 @@ export default function InsModal(props) {
                 router.reload(window.location.pathname);
               }
               handleCloseInsModal();
-              //   Sucess Pop nottifcioaton
             }}
           >
             {fetchedUserData ? "Ok Got it" : "Lets Roll !"}
