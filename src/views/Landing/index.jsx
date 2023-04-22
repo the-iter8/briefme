@@ -40,8 +40,10 @@ export default function Landing() {
           </h1>
 
           <p>
-            Ever got so occupied, that you forgot to take your daily source of information? Well, Just open Brief me on
-            your Laptop and glance over all the daily digest information that <strong> matters you the most</strong>
+            Ever got so occupied, that you forgot to take your daily digest? Well, Just "Brief me" on
+            your Laptop and glance over all the daily digest that <strong> matters you the most.</strong> It
+            displays information like Weather, On This Day, Stock Prices, Metal Prices etc. in form of modules so that
+            you can access all of the quick & small but important information, at one place.
           </p>
 
           <button
