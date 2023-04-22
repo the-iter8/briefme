@@ -6,14 +6,7 @@ import InsModal from "../views/InsModal";
 import { UserContext } from "../utils/Contexts";
 import { getUserData } from "../utils/Firebase";
 import { bhagwadGitaRefs } from "../utils/LocalData";
-import {
-  useTime,
-  useWikiData,
-  useGoldPrices,
-  useGoldPricesTest,
-  useBhagwadGitaQuote,
-  useStockPrice,
-} from "../api/Endpoints";
+import { useTime, useWikiData, useGoldPrices, useBhagwadGitaQuote, useStockPrice } from "../api/Endpoints";
 import { ISRTimeProvider, DataContextProvider } from "../utils/Contexts";
 import { ToastContainer } from "react-toastify";
 
@@ -90,7 +83,7 @@ export async function getStaticProps() {
 
   //For testing the gold prices.
 
-  const { metalData } = await useGoldPricesTest();
+  const { metalData } = await useGoldPrices();
   const { wikiData } = await useWikiData({ month, day });
   const { stockData } = await useStockPrice();
 

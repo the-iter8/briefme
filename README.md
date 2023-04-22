@@ -1,14 +1,14 @@
 
-# Brief Me 📓
+# Brief Me 📓 V1 
 
 A web application built with a scalable codebase that displays an assortment of customizable trinkets meticulously designed to offer swift and precise daily digests.
 
 
 
-## Features links bhi add kernei hai 
+## Features
 
-- 🔑 Google Authentication & Storage with [Firebase]{https://firebase.google.com/} 🔥
-- ⚡ NextJS Incremental Static Regeneration:
+- 🔑 [Google Authentication](https://firebase.google.com/docs/auth) & Storage with [Firebase](https://firebase.google.com/) 🔥
+- ⚡ NextJS [Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration):
     - 🚀 Faster & efficient: generates content at server-side
     - 💰 lower server costs: 1 API call per widget/day*
     - 🚫 No stale data in pre-rendered pages.
@@ -16,6 +16,69 @@ A web application built with a scalable codebase that displays an assortment of 
 - 💾 User preference retention with Firestore
     - 💻 Stores custom layouts for displaying the widgets.
     - 🎨 Stores the preference of different widgets.
-- 🍞 React Toastified - Shows a notification for each update made on the page.
-- 🔄 SWR (Stale-While-Revalidate) for volatile data like weather reports.
+- 🍞 [React Toastified](https://www.npmjs.com/package/react-toastify) - Shows a notification for each update made on the page.
+- 🔄 [SWR](https://swr.vercel.app/) (Stale-While-Revalidate) for volatile data like weather reports.
 - 📖 User friendly quick guide on how to use the application.
+
+
+
+`*some of the widgets use realtime fetching having multiple calls per day.`
+
+
+
+
+## Widgets that we currently deliver 📖- 
+
+| Name | Source |
+|------------------|-------------------|
+| BhagwadGita Quotes | 🙏🏼 Shree Bhagavad Gita API |
+| On This Day | 🗓️ Wikimedia Commons API|
+| Weather Now | ☁️ Open Weather API |
+| Stock Prices | 💹 Alpha Vantage |
+| Metal Prices | 💰 Gold Price Live API |
+
+
+## Tech Stack & Design
+
+**Client:** NextJS
+
+**Backend:** Node, Firebase
+
+**UI library:** Material Ui
+
+**Icons:** MUi Icons
+
+**Design:** Figma: [Here is the design layout](https://www.figma.com/file/td1AGvWkqiQVVrfPDi8IH6/Brief-me?node-id=0-1) 
+
+**Misc Libraries:** SWR, Swiper, SupaDemo, React-Grid-Layout, React-Toastify.
+
+
+
+
+ 
+
+## FAQ ❓🙋‍♂️
+
+#### Only 5 widgets, is that it? 
+
+❌ No, We are planning to add more widgets soon.
+
+#### Can I add a custom widget?
+
+✔️ You can submit your widget request by contacting 📧 [randomdweller.me@gmail.com](mailto:example@example.com)
+## Feedback
+
+If you found any issues while using my application, please do let me know by creating an issue in the issue section here in github.com.
+
+## Known Bugs 🐛👀- 
+
+ 🐌 After logging in there is a delay in displaying the widgets.
+-🎨 UI needs improvement and color scheme does not go well.
+
+
+
+
+
+
+---
+Made with ❤️ by iter8 in India.
