@@ -4,15 +4,15 @@ import React from "react";
 
 import Text from "../../Text";
 import FetchText from "../../FetchText";
-import { toast } from "react-toastify";
 import IconButton from "@mui/material/IconButton";
+import Skeleton from "react-loading-skeleton";
 import { MUIIconStyle } from "../../../utils/LocalData";
 import ControlCameraIcon from "@mui/icons-material/ControlCamera";
+import { handleAddLocalPref, handleRemovePref } from "../../../utils";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
-import { handleAddLocalPref, handleRemovePref } from "../../../utils";
 export default function LargeCard(props) {
-  const { keyID, SVG, title, source, isEdit, children, localUserPref, setLocalUserPref } = props;
+  const { keyID, SVG, title, source, isEdit, isLoading, children, localUserPref, setLocalUserPref } = props;
 
   const Grabber = () => {
     //put an onClick Fucntion
@@ -46,26 +46,37 @@ export default function LargeCard(props) {
     );
   };
 
-  return (
-    <div className={styles.root}>
-      <div className={styles.header}>
-        <Text align='center' size='xs' weight='semi-bold'>
-          {title}
-        </Text>
-        <Grabber />
-      </div>
-
-      <div className={styles.mainContent}>{children}</div>
-      {!isEdit && SVG && (
-        <div className={styles.SVG}>
-          <SVG />
+  if (isLoading)
+    return (
+      <div className={styles.root}>
+        <div className='skeleton'>
+          <Skeleton count={3.5} />
+          <Skeleton count={3.5} />
+          <Skeleton count={1.5} />
         </div>
-      )}
-      <div className={styles.footer}>
-        {isEdit && <FooterEditIcons />}
-
-        <FetchText source={source} small />
       </div>
-    </div>
-  );
+    );
+  else
+    return (
+      <div className={styles.root}>
+        <div className={styles.header}>
+          <Text align='center' size='xs' weight='semi-bold'>
+            {title}
+          </Text>
+          <Grabber />
+        </div>
+
+        <div className={styles.mainContent}>{children}</div>
+        {!isEdit && SVG && (
+          <div className={styles.SVG}>
+            <SVG />
+          </div>
+        )}
+        <div className={styles.footer}>
+          {isEdit && <FooterEditIcons />}
+
+          <FetchText source={source} small />
+        </div>
+      </div>
+    );
 }

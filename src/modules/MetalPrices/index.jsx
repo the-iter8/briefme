@@ -6,7 +6,7 @@ import MetalStack from "../../icons/MetalStack";
 import styles from "./MetalPrices.module.css";
 import Text from "../../components/Text";
 import { GoldPriceStub } from "../../utils/LocalData";
-export default function MetalPrice(props) {
+export default function MetalPrices(props) {
   const { isEdit, localUserPref, setLocalUserPref, data } = props;
 
   const SectionOne = ({ SVG, title, priceUSD, priceINR }) => {

@@ -87,3 +87,9 @@ button {
   border-radius: var(--b-radius-large-primary);
   opacity: 0.3 !important;
 }
+
+.skeleton {
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+}

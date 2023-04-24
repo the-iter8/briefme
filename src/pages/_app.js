@@ -1,9 +1,9 @@
 import "../styles/globals.css";
 import "../styles/variables.css";
 import "../styles/Text.css";
+import "react-loading-skeleton/dist/skeleton.css";
 import "/node_modules/react-grid-layout/css/styles.css";
 import "/node_modules/react-resizable/css/styles.css";
-
 
 import { useRouter } from "next/router";
 import { checkUser } from "../utils/Firebase";
@@ -20,7 +20,6 @@ function MyApp({ Component, pageProps }) {
     checkUser((user) => {
       // A callback function.
       //Push a notification redirecting.
-      // Check valid user == ankit?
       const path = router.pathname;
       setCurrentUser(user);
       if (user) {
