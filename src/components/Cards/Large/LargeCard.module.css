@@ -10,6 +10,7 @@
   box-shadow: var(--shadow-large-card);
   border-radius: var(--b-radius-large-primary);
 }
+
 .grabber {
   position: absolute;
   right: 3px;

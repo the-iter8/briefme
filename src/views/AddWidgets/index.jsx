@@ -17,14 +17,10 @@ import { DataContext, UserContext } from "../../utils/Contexts";
 
 //Dynamic Imports change the loading shit.
 
-const MetalPrices = dynamic(() => import("../../modules/MetalPrices"), { loading: () => "Loading..." });
-const StockPrices = dynamic(() => import("../../modules/StockPrices"), { loading: () => "Loading..." });
-const OnThisDay = dynamic(() => import("../../modules/OnThisDay"), {
-  loading: () => "Loading...",
-});
-const Weather = dynamic(() => import("../../modules/Weather"), {
-  loading: () => "Loading...",
-});
+import MetalPrices from "../../modules/MetalPrices";
+import StockPrices from "../../modules/StockPrices";
+import OnThisDay from "../../modules/OnThisDay";
+import Weather from "../../modules/Weather";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />;
@@ -70,7 +66,6 @@ export default function AddWidgets({ prefModal }) {
   };
 
   const handleSavePref = async () => {
-    // Show a popup that the preferance has been updated.
     await postPref(currentUser, localUserPref);
     toast.success("Your preferance has been saved.");
   };

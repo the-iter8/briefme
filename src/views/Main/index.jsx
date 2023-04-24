@@ -9,15 +9,16 @@ import AddWidgets from "../AddWidgets";
 import Button from "../../components/Button";
 import ReactGridLayout from "react-grid-layout";
 import { toast } from "react-toastify";
-
+import LargeCard from "../../components/Cards/Large";
+import SmallCard from "../../components/Cards/Small";
 //Dynamic Imports
-const MetalPrices = dynamic(() => import("../../modules/MetalPrices"), { loading: () => "Loading..." });
-const StockPrices = dynamic(() => import("../../modules/StockPrices"), { loading: () => "Loading..." });
+const MetalPrices = dynamic(() => import("../../modules/MetalPrices"), { loading: () => <LargeCard isLoading /> });
+const StockPrices = dynamic(() => import("../../modules/StockPrices"), { loading: () => <LargeCard isLoading /> });
 const OnThisDay = dynamic(() => import("../../modules/OnThisDay"), {
-  loading: () => "Loading...",
+  loading: () => <LargeCard isLoading />,
 });
 const Weather = dynamic(() => import("../../modules/Weather"), {
-  loading: () => "Loading...",
+  loading: () => <SmallCard isLoading />,
 });
 
 export default function Main({ prefModal, data }) {
