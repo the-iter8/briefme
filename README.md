@@ -30,6 +30,7 @@ Ever got so occupied, that you forgot to take your daily source of information? 
 | Weather Now        | ☁️ Open Weather API        |
 | Stock Prices       | 💹 Alpha Vantage           |
 | Metal Prices       | 💰 Gold Price Live API     |
+| Youtube Brief      | 💰 Youtube Data API        |
 
 ## Tech Stack & Design
 

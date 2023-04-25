@@ -6,9 +6,16 @@ import InsModal from "../views/InsModal";
 import { UserContext } from "../utils/Contexts";
 import { getUserData } from "../utils/Firebase";
 import { bhagwadGitaRefs } from "../utils/LocalData";
-import { useTime, useWikiData, useGoldPrices, useBhagwadGitaQuote, useStockPrice } from "../api/Endpoints";
-import { ISRTimeProvider, DataContextProvider } from "../utils/Contexts";
 import { ToastContainer } from "react-toastify";
+import { ISRTimeProvider, DataContextProvider } from "../utils/Contexts";
+import {
+  useTime,
+  useWikiData,
+  useGoldPrices,
+  useStockPrice,
+  useBhagwadGitaQuote,
+  useGoldPricesTest,
+} from "../api/Endpoints";
 
 export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wikiData, stockData }) {
   // see the fetched on is going to be used at many places and we cant just use it in the context because of the fact that all the things will reload if the context is changed. Now the ISR context changes and the whole application under it rerenders, but it does not matters as the SWR are already on the client side and can send multiple request.s
@@ -23,7 +30,6 @@ export default function Dashboard({ bhagwadGitaData, fetchedISROn, metalData, wi
   const [userPref, setUserPref] = useState([]);
 
   // Open Edit Pref updates onchange of modal.
-
   // Making the ins Modal available to normal users.
 
   useEffect(() => {
@@ -81,8 +87,7 @@ export async function getStaticProps() {
   const ref = day && bhagwadGitaRefs[day];
   const { bhagwadGitaData } = await useBhagwadGitaQuote(ref);
 
-  //For testing the gold prices.
-
+  // const { metalData } = await useGoldPricesTest();
   const { metalData } = await useGoldPrices();
   const { wikiData } = await useWikiData({ month, day });
   const { stockData } = await useStockPrice();
@@ -90,10 +95,10 @@ export async function getStaticProps() {
   return {
     props: {
       bhagwadGitaData: bhagwadGitaData?.translations[0]?.description,
+      wikiData: wikiData?.selected,
       fetchedISROn,
       metalData,
       stockData,
-      wikiData: wikiData?.selected,
     },
     revalidate: 86400,
   };

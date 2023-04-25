@@ -31,7 +31,7 @@ const Text = (props: TextProps) => {
     align || "inherit",
     font || "primary",
     weight || "medium",
-    size || "md",
+    size || "xs",
     color || "inherit",
     className || "",
   ];
