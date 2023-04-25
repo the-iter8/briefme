@@ -1,13 +1,11 @@
 import useSWR from "swr";
 const WeatherKey = process.env.NEXT_PUBLIC_OPEN_WEATHER;
-
+const YoutubeKey = process.env.NEXT_PUBLIC_YOUTUBE;
 const useFetchSWR = (link, options) => {
   const fetcher = (link, options) => fetch(link, options).then((res) => res.json());
   const { data, error, isLoading } = useSWR([link, options], fetcher);
   return { data, error, isLoading };
 };
-
-
 export const useGoldPrices = async (test) => {
   const options = {
     method: "GET",
@@ -74,6 +72,7 @@ export const useStockPrice = async () => {
   return { stockData, isLoading: !stockData };
 };
 
+// Realtime APIS
 export const useWeather = () => {
   const lat = 28.6479;
   const long = 77.2867;
@@ -85,8 +84,19 @@ export const useWeather = () => {
   return { data, error, isLoading };
 };
 
-//For testing
+export const useYoutube = () => {
+  const part = "snippet%2CcontentDetails%2Cstatistics";
+  const channelID = "UC0p1uOqudO-Yf1cTc8z_ssQ";
+  const options = {
+    method: "GET",
+  };
 
+  const link = `https://youtube.googleapis.com/youtube/v3/channels?part=${part}&id=${channelID}&key=${YoutubeKey}`;
+  const { error, isLoading, data } = useFetchSWR(link, options);
+  return { data, error, isLoading };
+};
+
+//For testing/dev
 export const useGoldPricesTest = async () => {
   const metalData = await {
     gold: "12345.3",

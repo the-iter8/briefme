@@ -17,6 +17,9 @@ const StockPrices = dynamic(() => import("../../modules/StockPrices"), { loading
 const OnThisDay = dynamic(() => import("../../modules/OnThisDay"), {
   loading: () => <LargeCard isLoading />,
 });
+const Youtube = dynamic(() => import("../../modules/Youtube"), {
+  loading: () => <LargeCard isLoading />,
+});
 const Weather = dynamic(() => import("../../modules/Weather"), {
   loading: () => <SmallCard isLoading />,
 });
@@ -52,6 +55,12 @@ export default function Main({ prefModal, data }) {
       key: "d",
       keyID: "WT",
       comp: <Weather />,
+    },
+    {
+      id: 4,
+      key: "e",
+      keyID: "YT",
+      comp: <Youtube />,
     },
   ];
   let tempPrefArr = [];

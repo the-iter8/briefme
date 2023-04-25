@@ -56,15 +56,12 @@ export default function Weather(props) {
     <SmallCard
       keyID='WT'
       isEdit={isEdit}
+      isLoading={isLoading || error}
       title='Weather Report'
       localUserPref={localUserPref}
       setLocalUserPref={setLocalUserPref}
     >
-      {isLoading || !data ? (
-        <div>loading.. If this shows for too long, that means there is some issue with the API.</div>
-      ) : (
-        <SectionOne />
-      )}
+      <SectionOne />
     </SmallCard>
   );
 }

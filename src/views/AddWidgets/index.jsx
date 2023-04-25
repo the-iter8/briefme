@@ -20,6 +20,7 @@ import { DataContext, UserContext } from "../../utils/Contexts";
 import MetalPrices from "../../modules/MetalPrices";
 import StockPrices from "../../modules/StockPrices";
 import OnThisDay from "../../modules/OnThisDay";
+import Youtube from "../../modules/Youtube";
 import Weather from "../../modules/Weather";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -57,6 +58,11 @@ export default function AddWidgets({ prefModal }) {
       id: 3,
       keyID: "WT",
       comp: <Weather isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
+    },
+    {
+      id: 4,
+      keyID: "YT",
+      comp: <Youtube isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
     },
   ];
 

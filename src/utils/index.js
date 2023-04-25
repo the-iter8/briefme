@@ -14,6 +14,7 @@ export const getLayout = () => {
     { i: "b", x: 2, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
     { i: "c", x: 4, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
     { i: "d", x: 6, y: 0, w: 2, h: 1, isResizable: false, isBounded: true },
+    { i: "e", x: 6, y: 0, w: 2, h: 2, isResizable: false, isBounded: true },
   ];
 
   if (global.localStorage.getItem("layout")) {
