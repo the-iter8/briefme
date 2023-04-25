@@ -42,7 +42,7 @@ export default function Youtube(props) {
       localUserPref={localUserPref}
       setLocalUserPref={setLocalUserPref}
     >
-      <SectionOne />
+      {data ? <SectionOne /> : "loading.."}
     </LargeCard>
   );
 }
