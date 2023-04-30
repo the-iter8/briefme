@@ -7,7 +7,7 @@ import { useYoutube } from "../../api/Endpoints";
 
 export default function Youtube(props) {
   const { isEdit, localUserPref, setLocalUserPref } = props;
-  const { data, error, isLoading } = useYoutube();
+  const { data, error, requestTime, isLoading } = useYoutube();
 
   const SectionOne = ({}) => {
     return (
@@ -36,13 +36,14 @@ export default function Youtube(props) {
     <LargeCard
       keyID='YT'
       isEdit={isEdit}
+      SWRTime={requestTime}
       isLoading={isLoading || error}
-      title='Youtube Dashboard'
+      title='Youtube Dashboard (Live)'
       source='Youtube Data API'
       localUserPref={localUserPref}
       setLocalUserPref={setLocalUserPref}
     >
-      {data ? <SectionOne /> : "loading.."}
+      <SectionOne />
     </LargeCard>
   );
 }

@@ -84,10 +84,10 @@ export async function getStaticProps() {
   const { time, day, month } = timeData;
   const fetchedISROn = { time, day, month };
 
-  const ref = day && bhagwadGitaRefs[day];
+  const ref = day && bhagwadGitaRefs[day - 1];
   const { bhagwadGitaData } = await useBhagwadGitaQuote(ref);
 
-  // const { metalData } = await useGoldPricesTest();
+    // const { metalData } = await useGoldPricesTest();
   const { metalData } = await useGoldPrices();
   const { wikiData } = await useWikiData({ month, day });
   const { stockData } = await useStockPrice();

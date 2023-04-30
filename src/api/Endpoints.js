@@ -1,11 +1,21 @@
 import useSWR from "swr";
-const WeatherKey = process.env.NEXT_PUBLIC_OPEN_WEATHER;
 const YoutubeKey = process.env.NEXT_PUBLIC_YOUTUBE;
+const WeatherKey = process.env.NEXT_PUBLIC_OPEN_WEATHER;
+
 const useFetchSWR = (link, options) => {
   const fetcher = (link, options) => fetch(link, options).then((res) => res.json());
-  const { data, error, isLoading } = useSWR([link, options], fetcher);
-  return { data, error, isLoading };
+  const { data, error, isLoading, isValidating } = useSWR([link, options], fetcher);
+  const requestedOn = data || isValidating ? new Date() : null;
+  const requestTime = requestedOn?.toLocaleString("en-IN", {
+    day: "2-digit",
+    month: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  return { data, error, isLoading, requestTime };
 };
+
 export const useGoldPrices = async (test) => {
   const options = {
     method: "GET",
@@ -80,8 +90,8 @@ export const useWeather = () => {
     method: "GET",
   };
   const link = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${WeatherKey}`;
-  const { error, isLoading, data } = useFetchSWR(link, options);
-  return { data, error, isLoading };
+  const { error, isLoading, data, requestTime } = useFetchSWR(link, options);
+  return { data, error, requestTime, isLoading };
 };
 
 export const useYoutube = () => {
@@ -92,8 +102,8 @@ export const useYoutube = () => {
   };
 
   const link = `https://youtube.googleapis.com/youtube/v3/channels?part=${part}&id=${channelID}&key=${YoutubeKey}`;
-  const { error, isLoading, data } = useFetchSWR(link, options);
-  return { data, error, isLoading };
+  const { error, isLoading, data, requestTime } = useFetchSWR(link, options);
+  return { data, error, requestTime, isLoading };
 };
 
 //For testing/dev

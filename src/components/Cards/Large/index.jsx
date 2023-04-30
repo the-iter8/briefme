@@ -12,7 +12,7 @@ import { handleAddLocalPref, handleRemovePref } from "../../../utils";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import RemoveCircleOutlinedIcon from "@mui/icons-material/RemoveCircleOutlined";
 export default function LargeCard(props) {
-  const { keyID, SVG, title, source, isEdit, isLoading, children, localUserPref, setLocalUserPref } = props;
+  const { keyID, SVG, title, source, isEdit, isLoading, children, localUserPref, setLocalUserPref, SWRTime } = props;
 
   const Grabber = () => {
     //put an onClick Fucntion
@@ -75,7 +75,7 @@ export default function LargeCard(props) {
         <div className={styles.footer}>
           {isEdit && <FooterEditIcons />}
 
-          <FetchText source={source} small />
+          <FetchText SWRTime={SWRTime} source={source} small />
         </div>
       </div>
     );
