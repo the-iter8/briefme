@@ -1,20 +1,7 @@
 //Useless function we have to make such function though.
 
-export const MUIIconStyle = {
-  padding: 0.2,
-  boxShadow: "1px 4px 6px -2px rgba(0, 0, 0, 0.75)",
-  opacity: 0.75,
-  borderRadius: "8px",
-};
-export const MUIEditBTN = {
-  padding: 0.8,
-  opacity: 0.75,
-  paddingTop: 0.4,
-  paddingBottom: 0.4,
-  borderRadius: "8px",
 
-  boxShadow: "0px 4px 6px -2px rgba(0, 0, 0, 0.75)",
-};
+
 export const insModalStyle = {
   borderRadius: 3,
   position: "absolute",
@@ -1250,5 +1237,3 @@ export const bhagwadGitaRefs = [
     verse: 29,
   },
 ];
-
-

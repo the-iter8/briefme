@@ -9,19 +9,27 @@ import { GoldPriceStub } from "../../utils/LocalData";
 export default function MetalPrices(props) {
   const { isEdit, localUserPref, setLocalUserPref, data } = props;
 
-  const SectionOne = ({ SVG, title, priceUSD, priceINR }) => {
+  const SectionOne = ({ SVG, title, priceUSD, priceReal }) => {
     return (
       <div className={styles.sectionOne}>
         <div className={styles.SVGDiv}>{SVG}</div>
         <div className={styles.priceDiv}>
-          <Text size='xs' align='right'>
+          <Text size='xs' align='right' weight='heavy'>
             {title}
           </Text>
           <Text size='xs' weight='bold' align='right'>
             {priceUSD}
           </Text>
-          <Text size='xs' weight='bold' align='right'>
-            {priceINR}
+          <Text
+            size='xxs'
+            variant='a'
+            color='info'
+            weight='bold'
+            align='right'
+            className={styles.knowMore}
+            href={`https://www.google.com/search?q=${priceReal}+to+INR`}
+          >
+            Know in INR/Oz
           </Text>
         </div>
       </div>
@@ -42,13 +50,13 @@ export default function MetalPrices(props) {
         SVG={<Gold />}
         title='Current Gold Price'
         priceUSD={isEdit || !data ? `${GoldPriceStub.gold} USD/Oz` : `${data?.gold} USD/Oz`}
-        priceINR=''
+        priceReal={isEdit || !data ? GoldPriceStub.gold : data?.gold}
       />
       <SectionOne
         SVG={<Silver />}
         title='Current Silver Price'
         priceUSD={isEdit || !data ? `${GoldPriceStub.silver} USD/Oz` : `${data?.silver} USD/Oz`}
-        priceINR=''
+        priceReal={isEdit || !data ? GoldPriceStub.silver : data?.silver}
       />
     </LargeCard>
   );

@@ -7,7 +7,7 @@ import styles from "./NavbarQuote.module.css";
 export default function NavbarQuote({ data }) {
   return (
     <div className={styles.root}>
-      <Text size='sm' weight='semi-bold' align='center'>
+      <Text size='md' weight='heavy' align='center'>
         {data ? data : "This is a dummy text, the API call has some issues, please contact the developer."}
       </Text>
 

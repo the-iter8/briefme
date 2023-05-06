@@ -12,7 +12,19 @@
   justify-content: space-around;
   align-items: center;
   padding: 0.2rem;
+  cursor: pointer;
+  border-bottom: var(--border-3);
+  border-style: dashed;
+}
+.sectionOne:hover {
+  background-color: var(--pastel-yellow);
 }
 .priceDiv {
+  gap: 4px;
   width: auto;
+  display: flex;
+  flex-direction: column;
+}
+.knowMore:hover {
+  text-decoration: underline;
 }

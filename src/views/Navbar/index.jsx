@@ -4,12 +4,12 @@ import styles from "./Navbar.module.css";
 import { logOut } from "../../utils/Firebase";
 
 import Text from "../../components/Text";
-import NavbarQuote from "../../modules/TheBhagwadGita/NavbarQuote";
-import { MUIIconStyle, MUIEditBTN } from "../../utils/LocalData";
-import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import Button from "../../components/Button";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import NavbarQuote from "../../modules/TheBhagwadGita/NavbarQuote";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+
 export default function Navbar(props) {
   const { data, prefModal, userData, setOpenInsModal } = props;
   const { setOpenEditPref } = prefModal;
@@ -20,41 +20,38 @@ export default function Navbar(props) {
     return (
       <div className={styles.profileSection}>
         <div className={styles.profile}>
-          <div>
-            <Text size='xs' align='right' weight='semi-bold'>
+          <div className={styles.profileText}>
+            <Text size='md' align='right' weight='heavy'>
               {userData?.fullName || "Waiting for you... "}
             </Text>
-            <Text size='xxs' color='grey'>
+            <Text size='sm' color='grey'>
               {userData?.emailId || "yourcuteemail@awwmail.com"}
             </Text>
           </div>
-          <Avatar src={userData?.photo} className={styles.avatar} alt={userData?.fullName || "i8"} />
+          <Avatar src={userData?.photo} className={styles.avatar} alt={userData?.fullName || "User"} />
         </div>
         <div className={styles.profileIcons}>
-          <IconButton
-            sx={MUIIconStyle}
-            onClick={() => {
-              setOpenInsModal(false);
-            }}
-          >
-            <HelpOutlineIcon size='small' />
-          </IconButton>
-          <IconButton
-            sx={MUIIconStyle}
-            onClick={() => {
-              logOut();
-            }}
-          >
-            <PowerSettingsNewIcon size='small' />
-          </IconButton>
-          <IconButton
-            sx={MUIEditBTN}
+          <Button
             onClick={() => {
               setOpenEditPref(true);
             }}
           >
-            <Text size='xxs'>Edit Widgets</Text>
-          </IconButton>
+            Edit Widgets
+          </Button>
+          <Button
+            type='secondary'
+            icon={<HelpOutlineIcon size='small' />}
+            onClick={() => {
+              setOpenInsModal(false);
+            }}
+          />
+          <Button
+            icon={<PowerSettingsNewIcon size='small' />}
+            type='secondary'
+            onClick={() => {
+              logOut();
+            }}
+          />
         </div>
       </div>
     );

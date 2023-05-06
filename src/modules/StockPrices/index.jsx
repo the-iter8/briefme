@@ -13,30 +13,36 @@ export default function StockPrices(props) {
     return (
       <div className={styles.sectionOne}>
         <div className='flex gap-3 flex-between'>
-          <Text weight='semi-bold' size='xs'>
+          <Text weight='heavy' size='xs'>
             {data["Global Quote"]["01. symbol"]}
           </Text>
-          <Text size='xxs' weight='semi-bold'>
-            Current Price :{" "}
-            <Text variant='span' weight='semi-bold' size='xxs'>
-              {parseFloat(data["Global Quote"]["05. price"]).toFixed(2)} INR
+          <Text size='xxs' weight='heavy'>
+            Current Price:{" "}
+            <Text variant='span' weight='heavy' size='xxs'>
+              {parseFloat(data["Global Quote"]["05. price"]).toFixed(0)} INR
             </Text>
           </Text>
         </div>
         <div className='flex flex-between'>
-          <div>
-            <Text size='xxxs'>Open : {parseFloat(data["Global Quote"]["02. open"]).toFixed(2)}</Text>
-            <Text size='xxxs'>High : {parseFloat(data["Global Quote"]["03. high"]).toFixed(2)}</Text>
-            <Text size='xxxs'>Low : {parseFloat(data["Global Quote"]["04. low"]).toFixed(2)}</Text>
+          <div className={styles.priceDiv}>
+            <Text size='xxxs' weight='bold'>
+              Open : {parseFloat(data["Global Quote"]["02. open"]).toFixed(2)}
+            </Text>
+            <Text size='xxxs' weight='bold'>
+              High : {parseFloat(data["Global Quote"]["03. high"]).toFixed(2)}
+            </Text>
+            <Text size='xxxs' weight='bold'>
+              Low : {parseFloat(data["Global Quote"]["04. low"]).toFixed(2)}
+            </Text>
           </div>
-          <div>
-            <Text size='xxxs' align='right'>
+          <div className={styles.priceDiv}>
+            <Text size='xxxs' weight='bold' align='right'>
               Previous Close : {parseFloat(data["Global Quote"]["08. previous close"]).toFixed(2)}
             </Text>
-            <Text size='xxxs' align='right'>
+            <Text size='xxxs' weight='bold' align='right'>
               Change Percent : {parseFloat(data["Global Quote"]["10. change percent"]).toFixed(2)}
             </Text>
-            <Text size='xxxs' align='right' weight='semi-bold'>
+            <Text size='xxxs' weight='bold' align='right'>
               Change : {parseFloat(data["Global Quote"]["09. change"]).toFixed(2)} INR
             </Text>
           </div>

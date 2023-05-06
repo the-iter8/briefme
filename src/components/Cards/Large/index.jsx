@@ -4,9 +4,9 @@ import React from "react";
 
 import Text from "../../Text";
 import FetchText from "../../FetchText";
-import IconButton from "@mui/material/IconButton";
+
 import Skeleton from "react-loading-skeleton";
-import { MUIIconStyle } from "../../../utils/LocalData";
+import Button from "../../../components/Button";
 import ControlCameraIcon from "@mui/icons-material/ControlCamera";
 import { handleAddLocalPref, handleRemovePref } from "../../../utils";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
@@ -26,22 +26,22 @@ export default function LargeCard(props) {
   const FooterEditIcons = () => {
     return (
       <div className={styles.footerIcons}>
-        <IconButton
-          sx={MUIIconStyle}
+        <Button
+          icon={<AddCircleOutlinedIcon />}
+          type='secondary'
+          bgColor='#B8FF9F'
           onClick={() => {
             handleAddLocalPref(keyID, title, localUserPref, setLocalUserPref);
           }}
-        >
-          <AddCircleOutlinedIcon />
-        </IconButton>
-        <IconButton
-          sx={MUIIconStyle}
+        />
+
+        <Button
+          type='secondary'
+          icon={<RemoveCircleOutlinedIcon />}
           onClick={() => {
             handleRemovePref(keyID, title, localUserPref, setLocalUserPref);
           }}
-        >
-          <RemoveCircleOutlinedIcon />
-        </IconButton>
+        />
       </div>
     );
   };
@@ -60,7 +60,7 @@ export default function LargeCard(props) {
     return (
       <div className={styles.root}>
         <div className={styles.header}>
-          <Text align='center' size='xs' weight='semi-bold'>
+          <Text align='center' size='xs' weight='heavy'>
             {title}
           </Text>
           <Grabber />

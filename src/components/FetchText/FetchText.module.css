@@ -1,12 +1,15 @@
 .root,
 .rootSmall {
-  font-size: 0.7rem;
+  max-width: 70%;
+  font-size: 0.8rem;
+  font-weight: 700;
   color: var(--grey);
 
-  align-self: flex-end;
   text-align: right;
-  max-width: 50%;
+  align-self: flex-end;
 }
+
 .rootSmall {
-  font-size: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 800;
 }
