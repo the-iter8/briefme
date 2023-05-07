@@ -1,4 +1,4 @@
-# Brief Me 📓 V1
+# Brief Me 📓 V2
 
 A web application built with a scalable codebase that displays an assortment of customizable trinkets meticulously designed to offer swift and precise daily digests. Or in simple words Your Daily Digest Condensed in 1 screen.
 
@@ -31,6 +31,29 @@ Ever got so occupied, that you forgot to take your daily source of information? 
 | Stock Prices       | 💹 Alpha Vantage           |
 | Metal Prices       | 💰 Gold Price Live API     |
 | Youtube Brief      | 💰 Youtube Data API        |
+
+## Changelog
+
+### V2
+
+[Full Changelog](https://github.com/skywinder/ActionSheetPicker-3.0/compare/2.5.1...HEAD)
+
+**Fixed bugs:**
+
+- Fixed Bhagwadgita Quote not triggering on 30th of the month.
+
+**Redesign**
+
+- Redesigned the whole UI, to NeuBrutalism UI. 
+- Added some click sound and changed the font to [Inconsolata](https://fonts.google.com/specimen/Inconsolata)
+- Checkout branch version/v1 to check the older version.
+
+
+**SSR/ISR rebalance.**
+
+- Added an external CronJob that handles the revalidation for the API fetching. Removed revalidate period inside getStaticProps. 
+- ISR with revalidation period set to 1 day, the revalidation period start when the "getStaticProps" function is triggered. So for example, if a user visits the website at 2:30 PM it will serve the same data till 2:30 PM of the next day, only then on the first request it rebuilds the page and serves the fresh data to the second request.
+
 
 ## Tech Stack & Design
 
