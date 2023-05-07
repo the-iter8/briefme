@@ -52,6 +52,10 @@
 .info {
   color: $info;
 } */
+.info {
+  color: var(--pastel-dark);
+}
+
 .grey {
   color: var(--grey);
 }
@@ -74,6 +78,11 @@
 .bold {
   font-weight: 700;
 }
+
+.heavy {
+  font-weight: 800;
+}
+
 .tiny {
   font-size: 0.3rem;
 }
@@ -83,11 +92,11 @@
 }
 
 .xxs {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
 }
 
 .xs {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
 
 .sm {
@@ -129,3 +138,23 @@
 .noWrap {
   white-space: nowrap;
 }
+
+/*  
+- 20 px
+- 22 px 
+- 18 px
+- 12 px
+
+Primary Color - #F5f5f9;
+Another Color : #ffc29f;
+font-family: Inconsolata;
+Primary border: 4px solid black;
+  border-radius: 2px;
+
+
+
+
+
+
+
+*/

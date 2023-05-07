@@ -38,7 +38,7 @@ const Text = (props: TextProps) => {
 
   if (variant == "p" || variant == undefined) {
     return (
-      <p style={{ fontSize: sizeCustom }} className={classes.join(" ")}>
+      <p style={{ fontSize: sizeCustom }} className={classes.join(" ")} {...rest}>
         {children}
       </p>
     );
@@ -52,6 +52,7 @@ const Text = (props: TextProps) => {
         href={props.href}
         rel='noreferrer'
         target={"_blank"}
+        {...rest}
       >
         {children}
       </a>
@@ -59,7 +60,7 @@ const Text = (props: TextProps) => {
   }
   if (variant == "span") {
     return (
-      <span style={{ fontSize: sizeCustom }} className={classes.join(" ")}>
+      <span style={{ fontSize: sizeCustom }} className={classes.join(" ")} {...rest}>
         {children}
       </span>
     );

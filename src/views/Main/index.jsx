@@ -84,8 +84,11 @@ export default function Main({ prefModal, data }) {
           <Text align='center' size='sm' color='grey'>
             Click the “Add Widgets” Button to get started!
           </Text>
+
           <Button
             fontSize='sm'
+            type='primary'
+            fontWeight='medium'
             onClick={() => {
               setOpenEditPref(true);
             }}
@@ -97,7 +100,7 @@ export default function Main({ prefModal, data }) {
     );
   };
   const calcCols = () => {
-    return screen.width / 128.260869565;
+    return screen.width / 130.260869565;
   };
   const handleLayoutChange = (layout) => {
     global.localStorage.setItem("layout", JSON.stringify(layout));

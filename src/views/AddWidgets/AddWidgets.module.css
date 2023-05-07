@@ -1,13 +1,19 @@
 .navbar,
 .navbarChild {
   display: flex;
+  padding: 1rem 1.5rem;
   flex-direction: row;
   align-items: center;
+  border-bottom: var(--border-4);
+  background-color: var(--pastel-yellow);
   justify-content: space-between;
-  padding: 0.5rem 1rem;
 }
 .navbarChild {
   padding: 0;
+  gap: 1rem;
+  display: flex;
+  border: 0;
+  
 }
 
 .pref {

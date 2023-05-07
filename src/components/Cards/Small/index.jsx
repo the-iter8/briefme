@@ -3,6 +3,7 @@ import Text from "../../Text";
 import styles from "./SmallCard.module.css";
 import IconButton from "@mui/material/IconButton";
 import { MUIIconStyle } from "../../../utils/LocalData";
+import Button from "../../../components/Button";
 import Skeleton from "react-loading-skeleton";
 import { handleAddLocalPref, handleRemovePref } from "../../../utils";
 import ControlCameraIcon from "@mui/icons-material/ControlCamera";
@@ -23,22 +24,22 @@ export default function SmallCard(props) {
   const FooterEditIcons = () => {
     return (
       <div className={styles.footerIcons}>
-        <IconButton
-          sx={MUIIconStyle}
+        <Button
+          icon={<AddCircleOutlinedIcon />}
+          type='secondary'
+          bgColor='#B8FF9F'
           onClick={() => {
             handleAddLocalPref(keyID, title, localUserPref, setLocalUserPref);
           }}
-        >
-          <AddCircleOutlinedIcon />
-        </IconButton>
-        <IconButton
-          sx={MUIIconStyle}
+        />
+
+        <Button
+          type='secondary'
+          icon={<RemoveCircleOutlinedIcon />}
           onClick={() => {
             handleRemovePref(keyID, title, localUserPref, setLocalUserPref);
           }}
-        >
-          <RemoveCircleOutlinedIcon />
-        </IconButton>
+        />
       </div>
     );
   };

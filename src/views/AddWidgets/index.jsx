@@ -3,13 +3,12 @@ import { useRouter } from "next/router";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import React, { useContext, useState, useEffect } from "react";
-
+import Button from "../../components/Button";
 import Slide from "@mui/material/Slide";
 import Text from "../../components/Text";
 import AppBar from "@mui/material/AppBar";
 import Dialog from "@mui/material/Dialog";
 import styles from "./AddWidgets.module.css";
-import Button from "../../components/Button";
 import { postPref } from "../../utils/Firebase";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
@@ -38,6 +37,8 @@ export default function AddWidgets({ prefModal }) {
     setLocalUserPref(userPref);
   }, [userPref]);
 
+  // TODO check if changing Id's Will cause trouble.
+
   const availableCards = [
     {
       id: 0,
@@ -56,13 +57,13 @@ export default function AddWidgets({ prefModal }) {
     },
     {
       id: 3,
-      keyID: "WT",
-      comp: <Weather isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
+      keyID: "YT",
+      comp: <Youtube isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
     },
     {
       id: 4,
-      keyID: "YT",
-      comp: <Youtube isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
+      keyID: "WT",
+      comp: <Weather isEdit localUserPref={localUserPref} setLocalUserPref={setLocalUserPref} />,
     },
   ];
 
@@ -78,21 +79,18 @@ export default function AddWidgets({ prefModal }) {
 
   const Nav = () => {
     return (
-      <AppBar sx={{ position: "relative" }}>
-        <div className={styles.navbar}>
-          <div className={styles.navbarChild}>
-            <IconButton edge='start' onClick={handleClose} aria-label='close'>
-              <CloseIcon />
-            </IconButton>
-            <Text size='sm' color='light'>
-              Edit or add your widget preferance.
-            </Text>
-          </div>
-          <Button fontSize='xs' color='light' primary onClick={handleSavePref}>
-            Save
-          </Button>
+      <div className={styles.navbar}>
+        <div className={styles.navbarChild}>
+          <Button onClick={handleClose} icon={<CloseIcon />} type="secondary"/>
+
+          <Text size='md' weight='semi-bold'>
+            Edit or add your widget preferance.
+          </Text>
         </div>
-      </AppBar>
+        <Button fontSize='xs' color='dark' primary onClick={handleSavePref}>
+          Save
+        </Button>
+      </div>
     );
   };
 

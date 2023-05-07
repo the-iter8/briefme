@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700;800&display=swap');
 @import "variables.css";
 @import "classes.css";
 
@@ -8,7 +8,7 @@
   padding: 0;
   border: 0;
   color: black;
-  font-family: "Poppins", sans-serif;
+  font-family: "Inconsolata", monospace;
 }
 
 *:before,
@@ -62,7 +62,7 @@ h6 {
 *::-webkit-scrollbar-thumb {
   background-color: var(--grey-bg);
   border-radius: 5px;
-  border: 2px solid #ffffff;
+  border: 2px double #000000;
 }
 
 .swiper-button-prev:after,

@@ -15,10 +15,10 @@ export default function OnThisDay(props) {
             <img src={img || "/imgnotfound.png"} className={styles.img} width='100%' height='100%' />
           </div>
           <div className={styles.textDiv}>
-            <Text sizeCustom='0.6rem' weight='bold' align='left'>
+            <Text size='xs' weight='heavy' align='left'>
               {title}
             </Text>
-            <Text sizeCustom='0.55rem' align='left'>
+            <Text sizeCustom='0.6rem' weight='bold' align='left'>
               {desc}
             </Text>
           </div>

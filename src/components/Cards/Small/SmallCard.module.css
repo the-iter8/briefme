@@ -2,10 +2,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
+
   /* Change the height accordance to the APi */
   height: 130px;
   width: 240px;
   z-index: 0;
+  border: var(--border-3);
 
   box-shadow: var(--shadow-large-card);
   border-radius: var(--b-radius-large-primary);
@@ -27,6 +29,8 @@
 }
 
 .footer {
+  display: flex;
+  align-items: center;
   padding: 0.3rem;
   width: 100%;
 

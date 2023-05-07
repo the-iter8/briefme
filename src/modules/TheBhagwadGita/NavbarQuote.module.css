@@ -5,7 +5,9 @@
   gap: 0.5rem;
 
   width: 80%;
-  border-radius: 5px;
+  border-radius: 3px;
   padding: 0.5rem 1rem;
-  border: 2px solid black;
+  border: var(--border-4);
+  box-shadow: var(--shadow-large);
+  background-color: var(--pastel-white);
 }
