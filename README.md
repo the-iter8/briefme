@@ -36,8 +36,6 @@ Ever got so occupied, that you forgot to take your daily source of information? 
 
 ### V2
 
-[Full Changelog](https://github.com/skywinder/ActionSheetPicker-3.0/compare/2.5.1...HEAD)
-
 **Fixed bugs:**
 
 - Fixed Bhagwadgita Quote not triggering on 30th of the month.
@@ -49,7 +47,7 @@ Ever got so occupied, that you forgot to take your daily source of information? 
 - Checkout branch version/v1 to check the older version.
 
 
-**SSR/ISR rebalance.**
+**SSR/ISR rebalance. (Coming Soon)**
 
 - Added an external CronJob that handles the revalidation for the API fetching. Removed revalidate period inside getStaticProps. 
 - ISR with revalidation period set to 1 day, the revalidation period start when the "getStaticProps" function is triggered. So for example, if a user visits the website at 2:30 PM it will serve the same data till 2:30 PM of the next day, only then on the first request it rebuilds the page and serves the fresh data to the second request.
