@@ -1,6 +1,6 @@
 # Brief Me 📓 V2 Hosted at 
 <br />
-- https://briefme-the-iter8.vercel.app/
+#- https://briefme-the-iter8.vercel.app/
 
 A web application built with a scalable codebase that displays an assortment of customizable trinkets meticulously designed to offer swift and precise daily digests. Or in simple words Your Daily Digest Condensed in 1 screen.
 
