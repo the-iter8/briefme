@@ -1,7 +1,3 @@
-//Useless function we have to make such function though.
-
-
-
 export const insModalStyle = {
   borderRadius: 3,
   position: "absolute",
