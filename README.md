@@ -9,7 +9,7 @@ Ever got so occupied, that you forgot to take your daily source of information? 
 - 🔑 [Google Authentication](https://firebase.google.com/docs/auth) & Storage with [Firebase](https://firebase.google.com/) 🔥
 - ⚡ NextJS [Incremental Static Regeneration](https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration):
   - 🚀 Faster & efficient: generates content at server-side
-  - 💰 lower server costs: 1 API call per widget/day\*
+  - 💰 lower server costs: 1 API call per widget/day\* - [On Demand Revalidation](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation) with [**Cron Jobs**](https://console.cron-job.org/jobs)
   - 🚫 No stale data in pre-rendered pages.
 - 🖱️ Drag & Drop widget to customize and retain the layout.
 - 💾 User preference retention with Firestore
@@ -47,11 +47,11 @@ Ever got so occupied, that you forgot to take your daily source of information? 
 - Checkout branch version/v1 to check the older version.
 
 
-**SSR/ISR rebalance. (Coming Soon)**
+**SSR/ISR rebalance.**
 
 - Added an external CronJob that handles the revalidation for the API fetching. Removed revalidate period inside getStaticProps. 
 - ISR with revalidation period set to 1 day, the revalidation period start when the "getStaticProps" function is triggered. So for example, if a user visits the website at 2:30 PM it will serve the same data till 2:30 PM of the next day, only then on the first request it rebuilds the page and serves the fresh data to the second request.
-
+- Switched to [On Demand Revalidation](https://nextjs.org/docs/pages/building-your-application/data-fetching/incremental-static-regeneration#on-demand-revalidation) and a Cron Job to execute the endpoint. Vercel's Cron Jobs have too many limitations, Ended up using [this](https://console.cron-job.org/jobs)
 
 ## Tech Stack & Design
 
