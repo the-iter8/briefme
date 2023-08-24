@@ -79,7 +79,7 @@ Ever got so occupied, that you forgot to take your daily source of information? 
 
 ## Feedback
 
-If you found any issues while using my application, please do let me know by creating an issue in the issue section here in github.com.
+If you found any issues while using my application, please do let me know by creating an issue in the issue section here in github.com..
 
 ## Known Bugs 🐛👀-
 
