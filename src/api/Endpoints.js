@@ -1,6 +1,7 @@
 import useSWR from "swr";
 const YoutubeKey = process.env.NEXT_PUBLIC_YOUTUBE;
 const WeatherKey = process.env.NEXT_PUBLIC_OPEN_WEATHER;
+const BhagwadGitaKey = process.env.NEXT_PUBLIC_RAPID_API_KEY;
 
 const useFetchSWR = (link, options) => {
   const fetcher = (link, options) => fetch(link, options).then((res) => res.json());
@@ -96,7 +97,7 @@ export const useBhagwadGitaQuote = async (ref) => {
   const options = {
     method: "GET",
     headers: {
-      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
+      "X-RapidAPI-Key": BhagwadGitaKey,
       "X-RapidAPI-Host": "bhagavad-gita3.p.rapidapi.com",
     },
   };

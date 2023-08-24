@@ -75,8 +75,8 @@ export async function getStaticProps() {
   const { time, day, month } = timeData;
   const fetchedISROn = { time, day, month };
 
-  // const { metalData } = await useGoldPricesTest();
-  const { metalData } = await useGoldPrices();
+  const { metalData } = await useGoldPricesTest();
+  // const { metalData } = await useGoldPrices();
   const { wikiData } = await useWikiData({ month, day });
   const { stockData } = await useStockPrice();
 
