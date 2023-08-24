@@ -32,22 +32,7 @@ export const useGoldPrices = async (test) => {
 
   return { metalData, isLoading: !metalData };
 };
-export const useBhagwadGitaQuote = async (ref) => {
-  let { chapter, verse } = ref;
-  const options = {
-    method: "GET",
-    headers: {
-      "X-RapidAPI-Key": process.env.RAPID_API_KEY,
-      "X-RapidAPI-Host": "bhagavad-gita3.p.rapidapi.com",
-    },
-  };
 
-  const link = `https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${chapter}/verses/${verse}/`;
-  const raw = await fetch(link, options);
-  const bhagwadGitaData = await raw.json();
-
-  return { bhagwadGitaData, isLoading: !bhagwadGitaData };
-};
 export const useTime = async () => {
   const options = {
     method: "GET",
@@ -103,6 +88,23 @@ export const useYoutube = () => {
 
   const link = `https://youtube.googleapis.com/youtube/v3/channels?part=${part}&id=${channelID}&key=${YoutubeKey}`;
   const { error, isLoading, data, requestTime } = useFetchSWR(link, options);
+  return { data, error, requestTime, isLoading };
+};
+
+export const useBhagwadGitaQuote = async (ref) => {
+  let { chapter, verse } = ref;
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": process.env.NEXT_PUBLIC_RAPID_API_KEY,
+      "X-RapidAPI-Host": "bhagavad-gita3.p.rapidapi.com",
+    },
+  };
+
+  const link = `https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${chapter}/verses/${verse}/`;
+
+  const { error, isLoading, data, requestTime } = useFetchSWR(link, options);
+
   return { data, error, requestTime, isLoading };
 };
 

@@ -19,14 +19,18 @@ export default function Weather(props) {
         <div className={styles.leftDiv}>
           <Text size='sm' weight='bold'>
             {data?.weather[0].main} | {convertToC(data?.main.temp)}
-          </Text>{" "}
+          </Text>
           <div className='flex-column gap-1'>
-            <Text size='xxs'>Humidity : {data?.main.humidity}</Text>
-            <Text size='xxs'>Wind : {data?.wind.speed} km/s</Text>
-            <Text size='xxs' weight='semi-bold'>
+            <Text size='xs' weight='semi-bold'>
+              Humidity : {data?.main.humidity}
+            </Text>
+            <Text size='xs' weight='semi-bold'>
+              Wind : {data?.wind.speed} km/s
+            </Text>
+            <Text size='xs' weight='semi-bold'>
               Temp Max : {convertToC(data?.main.temp_max)}
             </Text>
-            <Text size='xxs' weight='semi-bold'>
+            <Text size='xs' weight='semi-bold'>
               Temp Min : {convertToC(data?.main.temp_min)}
             </Text>
           </div>
