@@ -25,25 +25,25 @@ export default function StockPrices(props) {
         </div>
         <div className='flex flex-between'>
           <div className={styles.priceDiv}>
-            <Text size='xxxs' weight='bold'>
-              Open : {parseFloat(data["Global Quote"]["02. open"]).toFixed(2)}
+            <Text size='xxs' weight='bold'>
+              Open : {parseFloat(data["Global Quote"]["02. open"]).toFixed(0)}
             </Text>
-            <Text size='xxxs' weight='bold'>
-              High : {parseFloat(data["Global Quote"]["03. high"]).toFixed(2)}
+            <Text size='xxs' weight='bold'>
+              High : {parseFloat(data["Global Quote"]["03. high"]).toFixed()}
             </Text>
-            <Text size='xxxs' weight='bold'>
-              Low : {parseFloat(data["Global Quote"]["04. low"]).toFixed(2)}
+            <Text size='xxs' weight='bold'>
+              Low : {parseFloat(data["Global Quote"]["04. low"]).toFixed()}
             </Text>
           </div>
           <div className={styles.priceDiv}>
-            <Text size='xxxs' weight='bold' align='right'>
-              Previous Close : {parseFloat(data["Global Quote"]["08. previous close"]).toFixed(2)}
+            <Text size='xxs' weight='bold' align='right'>
+              Previous Close : {parseFloat(data["Global Quote"]["08. previous close"]).toFixed()}
             </Text>
-            <Text size='xxxs' weight='bold' align='right'>
-              Change Percent : {parseFloat(data["Global Quote"]["10. change percent"]).toFixed(2)}
+            <Text size='xxs' weight='bold' align='right'>
+              Change Percent : {parseFloat(data["Global Quote"]["10. change percent"]).toFixed()}
             </Text>
-            <Text size='xxxs' weight='bold' align='right'>
-              Change : {parseFloat(data["Global Quote"]["09. change"]).toFixed(2)} INR
+            <Text size='xxs' weight='bold' align='right'>
+              Change : {parseFloat(data["Global Quote"]["09. change"]).toFixed()} INR
             </Text>
           </div>
         </div>

@@ -8,7 +8,7 @@
   width: 75%;
   font-family: "Open Sans", sans-serif;
   margin: 0 auto;
-  padding-top: 65px;
+  padding-top: 40px;
   min-height: 100vh;
   background: linear-gradient(180deg, rgba(227, 255, 248, 0) 82.08%, rgba(227, 255, 248, 0.38) 100%);
 }
@@ -18,7 +18,9 @@
   align-items: center;
   justify-content: space-between;
 }
-
+.main img {
+  max-width: 35%;
+}
 .ul {
   font-family: "Mulish", sans-serif;
   list-style: none;
@@ -29,7 +31,7 @@
 }
 
 .ul li a {
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .ul li a:hover {
@@ -57,9 +59,10 @@
 }
 
 .section p {
-  font-size: 14px;
+  font-size: 20px;
   line-height: 28px;
   color: #7d7987;
+  font-weight: 700;
   margin: 40px 0;
 }
 
@@ -87,7 +90,7 @@
   font-size: 14px;
   line-height: 28px;
   text-align: center;
-  margin-top: 80px;
+  margin-top: 40px;
 }
 
 .footer a {
@@ -126,4 +129,29 @@
   .button {
     margin: auto;
   }
+}
+
+.underlinehovereffect {
+  text-decoration: none;
+  color: inherit;
+}
+
+.underlinehovereffect {
+  display: inline-block;
+  padding-bottom: 0.25rem; /* defines the space between text and underline */
+  position: relative;
+}
+
+.underlinehovereffect::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(0, 242, 255);
+  transition: width 0.25s ease-out;
+}
+.underlinehovereffect:hover::before {
+  width: 100%;
 }

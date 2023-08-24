@@ -11,7 +11,7 @@ import NavbarQuote from "../../modules/TheBhagwadGita/NavbarQuote";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 
 export default function Navbar(props) {
-  const { data, prefModal, userData, setOpenInsModal } = props;
+  const { prefModal, userData, setOpenInsModal } = props;
   const { setOpenEditPref } = prefModal;
 
   // remove this below
@@ -59,7 +59,7 @@ export default function Navbar(props) {
 
   return (
     <div className={styles.navbar}>
-      <NavbarQuote data={data} />
+      <NavbarQuote />
       <UserProfile />
     </div>
   );
