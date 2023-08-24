@@ -1,7 +1,7 @@
 import useSWR from "swr";
 const YoutubeKey = process.env.NEXT_PUBLIC_YOUTUBE;
 const WeatherKey = process.env.NEXT_PUBLIC_OPEN_WEATHER;
-const BhagwadGitaKey = process.env.NEXT_PUBLIC_RAPID_API_KEY;
+const BhagwadGitaKey = "2538a292famsh640adda00593d8cp17430ejsn464f9c2d4f7a";
 
 const useFetchSWR = (link, options) => {
   const fetcher = (link, options) => fetch(link, options).then((res) => res.json());
