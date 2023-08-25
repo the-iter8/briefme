@@ -9,20 +9,15 @@ export default function NavbarQuote() {
   const day = new Date().getDate();
   const ref = day && bhagwadGitaRefs[day - 1];
   const fetchedData = useBhagwadGitaQuote(ref);
-  const [data, setData] = useState("This is a dummy text, the API call has some issues, please contact the developer.");
-
-  useEffect(() => {
-    fetchedData.then((data) => {
-      setData(data);
-    });
-  }, [fetchedData]);
-
+  console.log(fetchedData.data);
   return (
     <div className={styles.root}>
       <Text size='md' weight='heavy' align='center'>
-        {data.data?.translations[0].description}
+        {fetchedData.isLoading || fetchedData.error
+          ? "This is a dummy data, contact the developer if problem persists."
+          : fetchedData.data?.translations[0].description}
       </Text>
-      <FetchText source='The BhagwadGita API' SWRTime={data?.requestTime} />
+      <FetchText source='The BhagwadGita API' SWRTime={fetchedData.requestTime} />
     </div>
   );
 }

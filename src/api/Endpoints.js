@@ -5,7 +5,11 @@ const BhagwadGitaKey = "2538a292famsh640adda00593d8cp17430ejsn464f9c2d4f7a";
 
 const useFetchSWR = (link, options) => {
   const fetcher = (link, options) => fetch(link, options).then((res) => res.json());
-  const { data, error, isLoading, isValidating } = useSWR([link, options], fetcher);
+  const { data, error, isLoading, isValidating } = useSWR([link, options], fetcher, {
+    revalidateIfStale: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+  });
   const requestedOn = data || isValidating ? new Date() : null;
   const requestTime = requestedOn?.toLocaleString("en-IN", {
     day: "2-digit",
@@ -92,7 +96,7 @@ export const useYoutube = () => {
   return { data, error, requestTime, isLoading };
 };
 
-export const useBhagwadGitaQuote = async (ref) => {
+export const useBhagwadGitaQuote = (ref) => {
   let { chapter, verse } = ref;
   const options = {
     method: "GET",
@@ -105,7 +109,6 @@ export const useBhagwadGitaQuote = async (ref) => {
   const link = `https://bhagavad-gita3.p.rapidapi.com/v2/chapters/${chapter}/verses/${verse}/`;
 
   const { error, isLoading, data, requestTime } = useFetchSWR(link, options);
-
   return { data, error, requestTime, isLoading };
 };
 
